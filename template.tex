@@ -96,7 +96,8 @@
 % \usepackage{biblatex-chicago}
 
 %%% Unicode mathematics
-\usepackage{unicode-math}  % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
+\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}  % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
+	% warnings-off={...} disables warnings about redefined \overbracket, \underbracket, \dblcolon, \coloneqq, \Coloneqq, \eqqcolon due to package mathtools
 
 
 %%%%%%%%%%sp
