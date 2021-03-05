@@ -1,0 +1,331 @@
+\documentclass[11pt, a4paper, british]{article}
+
+% Intended to be compiled with LuaLaTeX; assumes UTF-8 support
+
+
+%%%%%%%%%%
+% CONTENTS
+% Navigate to a section quickly by searching for the %-tag
+% - Standard packages (%std)
+% - Specialised packages (%sp)
+% - Deficiencies (%def)
+% - Layout, sections and linking (%lay)
+% - Fonts (%font)
+% - Mathematics (%math)
+% - Typography (%typo)
+% - Figures and tables (%fig)
+% - Drafting annotations (%draft)
+% - Preamble, specific to this document (%pre)
+% - Document (%doc)
+
+
+%%%%%%%%%%std
+% STANDARD PACKAGES
+
+%%% Essential packages
+\usepackage[l2tabu, orthodox]{nag}  % Warn about obsolete practices
+\usepackage{dblfloatfix}  % Fixes for floats in a two-column layout
+\usepackage{xspace}  % Provide the addition of an automatic space after macros when in text environments using \xspace
+\usepackage[svgnames]{xcolor}  % Enable colours
+\usepackage{graphicx}  % Enable images
+
+%%% Page layout
+\usepackage{geometry}  % Provide adjustments for page and margin dimensions
+%% Optional
+% \usepackage{lua-visual-debug}  % Activate this package to draw boxes and rules in output for debugging
+% \usepackage{parskip}  % Add spacing between paragraphs and remove indentation
+% \usepackage{multicol}  % Support multicolumn layout
+% \usepackage{pdfpages}  % Enable inclusion of entire PDF pages
+
+%%% Basic typography
+\usepackage[no-math]{fontspec}  % Support OpenType fonts for text environments (no-math prevents changes to \mathrm in maths environments)
+\usepackage{babel}  % Enable multilingual support
+\usepackage{microtype}  % Automatic micro-typographic adjustments, e.g. character protrusion and font expansion
+\usepackage[all]{nowidow}  % Prevent paragraphs with widowed lines (all applies restriction to all paragraphs)
+\usepackage{relsize}  % Enable relative font sizing
+\usepackage[strict=true]{csquotes}  % Provide smart quotes (autopunct disables reordering of punctuation)
+	\ExecuteQuoteOptions{autostyle=true, autopunct=false}
+	% Make double quotes outer quotes like normal people; silly rearrangements of punctuation with "american" should be disabled by autopunct=false
+	\DeclareQuoteAlias{american}{british} \DeclareQuoteAlias{american}{australian} \DeclareQuoteAlias{american}{newzealand}
+	\MakeOuterQuote{"}  % Automatically replace " with smart quotes
+
+%%% Block-level texts
+%% Optional
+% \usepackage{titling}  % Enable document title layout adjustments
+% \usepackage{titlesec}  % Enable section heading layout adjustments
+\usepackage{enumitem}  % Enable list layout adjustments
+
+%%% Mathematics
+\usepackage[tbtags]{mathtools}  % Superset of amsmath; provide various equation environments, complex maths formatting and misc maths macros (tbtags places equation numbers at the top or bottom for a split equation)
+\usepackage{amssymb}  % Provide additional maths symbols
+\usepackage{siunitx}  % Provide formatted numerals and unit symbols, and S table columns for aligning numerals of varying digit lengths
+\usepackage{mleftright}  % Remove spaces around brackets that use \left and \right
+	\mleftright  % Remove spaces around all brackets that use \left and \right (package mleftright)
+%% Optional
+\usepackage{xfrac}  % Provide diagonal split-level fractions using \sfrac
+
+%%% Tables and figures
+\usepackage{float}  % Enable float layout adjustments and custom floats, and provide the strong place-here flag [H]
+\usepackage{caption}  % Enable caption layout adjustments
+\usepackage{placeins}  % Provide float placement boundaries using \FloatBarrier
+\usepackage{booktabs}  % Provide well-formatted tables
+\usepackage{multirow}  % Provide multirow cells in tabular environments
+%% Optional
+% \usepackage{rotfloat}  % Provide rotated floats
+% \usepackage{wrapfig}  % Provide tables and figures that are wrapped around by text
+% \usepackage{subcaption}  % Provide subfigures and subtables, with subcaptions
+
+%%% Sections and linking
+\usepackage{hyperref}  % Automatic hyperlinks in output
+	\hypersetup{unicode, psdextra,
+		hidelinks, citecolor=green, filecolor=cyan, linkcolor=blue, menucolor=blue, urlcolor=cyan, citebordercolor=green, filebordercolor=cyan, linkbordercolor=blue, menubordercolor=blue, urlbordercolor=cyan, bookmarksnumbered, bookmarksopen, CJKbookmarks,
+	}
+\usepackage{bookmark}  % Enable output adjustments for bookmarks produced by hyperref
+%% Optional
+\usepackage{glossaries}  % Provide automatically formatted acronyms and index and glossary sections (load after hyperref)
+	% \setacronymstyle{long-short}
+	\glsdisablehyper  % Do not hyperlink any terms in the text
+% \usepackage{appendix}  % Enable appendix layout adjustments and provide subappendices
+% \usepackage{biblatex}  % Provide automatically formatted citations and references sections
+% \usepackage[citestyle=verbose-inote, bibstyle=numeric]{biblatex}
+	% % language=australian to remove the stupid ordinals from dates; stupid thing doesn't work, must be set in documentclass
+	% \ExecuteBibliographyOptions{autocite=footnote, sorting=none, autopunct=false, alldates=long, dateabbrev=false}
+	% \renewbibmacro{in:}{}  % Remove the "in:" label from citations of a part of a larger work
+	% \DefineBibliographyStrings{english}{ urlseen={accessed}	}  % "URL: <url> (accessed <date>)" for any English variant
+% \usepackage{biblatex-chicago}
+
+%%% Unicode mathematics
+\usepackage{unicode-math}  % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
+
+
+%%%%%%%%%%sp
+% SPECIALISED PACKAGES
+
+%%% Graphics
+% \usepackage{tikz}  % Provide general vector graphics (basis of most embedded graphics packages)
+% \usepackage{pgfplots}  % Provide function or data plots
+% 	\usepgfplotslibrary{colorbrewer}
+% 	\pgfplotsset{ compat=1.17,
+% 		ticklabel style={ /pgf/number format/fixed, /pgf/number format/fixed zerofill, /pgf/number format/1000 sep={} },
+% 		scaled x ticks=false, scaled y ticks=false, scaled z ticks=false, % true|false|base 10:<exponent>|real:<number>|manual:{<label>}{<code>} (divide all tick labels by a common factor and label the common factor at the end)
+% 		major tick style={ draw=none },	minor tick style={ draw=none },
+% 		xlabel style={ align=center }, ylabel style={ align=center }, zlabel style={ align=center },
+% 		grid=both, major grid style={ very thin }, minor grid style={ ultra thin },
+% 		cycle list/Set1, cycle list name=Set1, %cycle list={ {blue, mark=x}, {red, mark=+}, {olive, mark=triangle} },
+% 		error bars/x dir=both, error bars/y dir=both, error bars/z dir=both,  % none|plus|minus|both (which bounds of uncertainty, upper or lower, to show)
+% 		error bars/x explicit=true, error bars/y explicit=true, error bars/z explicit=true,  % set to true to only draw error bars when a value is explicitly given
+% 		legend style={ cells={ anchor=west } },
+% 	}
+
+%%% Electronics
+% \usepackage[siunitx,straightvoltages]{circuitikz}  % Provide circuit diagrams
+
+%%% Chemistry
+% \usepackage{mhchem}  % Provide chemical formulae and equations
+
+%%% Software
+% \usepackage{minted}  % Provide source code environment with syntax highlighting (requires compiling with the -shell-escape option BEFORE the input file, and requires Python package Pygments; pip install Pygments)
+% 	\setminted{obeytabs, tabsize=4, breaklines, breakindentnchars=2, breaksymbolindentleftnchars=0, breaksymbolsepleftnchars=1, linenos, autogobble}
+% 	\renewcommand\theFancyVerbLine{\texttt{\small \color{LightGrey} \arabic{FancyVerbLine}}}  % Format line numbers as monospace and grey
+
+
+%%%%%%%%%%def
+% DEFICIENCIES
+% - Bold maths font, especially in headings
+% - \sin or \exp in section headings causes error; hyperref cannot convert to bookmark label due to redefinition by unicode-math
+%   (reference, but does not resolve issue: https://tex.stackexchange.com/questions/69331/strange-error-when-unicode-math-and-hyperref-are-combined-in-xelatex )
+% - Libertinus smallcaps are too small; current workaround is visually imperfect (attempted and failed: automatically detect uppercase or lowercase using Lua, smaller font size with bold)
+% - Acronyms should be using smallcaps (attempted and failed: redefine /acronymfont to evoke Lua but /acronymfont takes unexpanded macros as its argument and breaks)
+% - sfrac has poor kerning for numerator
+% - Sideways figure; title not on same page, PDF output not rotated (with package rotating; uncertain after upgrade to rotfloat)
+% - Lining tabular figures in tables for non-S columns; current solution awfully slow (disabled)
+% - Includes for tables (from csv) and tikz
+
+
+%%%%%%%%%%sec
+% LAYOUT, SECTIONS AND LINKING
+
+% Round height of text block to a multiple of \baselineskip (package geometry)
+\geometry{heightrounded}
+
+% % No floats outside of sections (package placeins)
+% \let\Oldsection\section \renewcommand{\section}{\FloatBarrier\Oldsection}
+% \let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
+% \let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
+
+% Use dot as separators
+\captionsetup{labelsep=period, margin=\parindent}  % Set caption label separator to dot instead of default colon (package caption)
+\makeatletter \renewcommand{\Hy@numberline}[1]{#1. } \makeatother  % Add dot after section numbers in bookmarks (package hyperref, bookmark)
+
+% Convert formatting commands to plain text in bookmark labels (package hyperref)
+\pdfstringdefDisableCommands{%
+	\renewcommand{\an}[1]{#1}
+	\renewcommand{\asc}[1]{#1}
+	% Maths mode
+	\renewcommand{\sin}{sin}
+}
+
+
+%%%%%%%%%%font
+% FONTS
+
+% Libertinus as main font (package fontspec)
+\setmainfont[Path=fonts/, Extension=.otf,
+	UprightFont=*-Regular, ItalicFont=*-Italic, BoldFont=*-Bold, BoldItalicFont=*-BoldItalic,
+	Kerning=On, Contextuals={Alternate}, Ligatures={Common, Rare}, Numbers={Proportional, OldStyle}, StylisticSet={4},  % SS4 replaces capital Eszett with double S
+]{LibertinusSerif}  % Default Latin Modern
+
+% Scaled Libertinus for use with \asc custom command, which is a visually imperfect workaround for the lack of appropriately-sized smallcaps in Libertinus
+\newfontfamily\scfont[Path=fonts/, Extension=.otf,
+	UprightFont=*-Regular, ItalicFont=*-Italic, BoldFont=*-Bold, BoldItalicFont=*-BoldItalic,
+	Kerning=On, Contextuals={Alternate}, Ligatures={Common, Rare}, Numbers={Proportional, OldStyle}, StylisticSet={4},  % SS4 replaces capital Eszett with double S
+	Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
+]{LibertinusSerif}
+
+% Locally installed Consolas as monospace font (package fontspec)
+\setmonofont[Scale=MatchLowercase]{Consolas}
+
+% Latin Modern Math as maths text font (package fontspec)
+\setmathrm[Path=fonts/, Extension=.otf]{latinmodern-math}
+
+% Latin Modern Math as maths symbol font (package unicode-math)
+\setmathfont[Path=fonts/, Extension=.otf]{latinmodern-math}
+\AtBeginDocument{ \renewcommand{\setminus}{\mathbin{\textbackslash}} }  % Terrible workaround for missing \setminus in Latin Modern Math
+
+% Latin Modern for bolded versions of maths symbol font (package fontspec)
+% % Workaround: https://tex.stackexchange.com/questions/248904/boldmath-with-unicode-math-and-fonts-with-a-math-table
+% % Setting the up and it font to latinmodern-math does not work as there is no way to specify BoldFont's range, and the range no longer falls back to ASCII when the font is changed using BoldFont=
+% \setmathfont[range=up, Path=fonts/, Extension=.otf, ItalicFont=lmroman10-italic, BoldFont=lmroman10-bold, BoldItalicFont=lmroman10-bolditalic]{lmroman10-regular}
+% \setmathfont[range=it, Path=fonts/, Extension=.otf, BoldFont=lmroman10-bolditalic]{lmroman10-italic}
+% % This sets all maths characters to bold for some reason, and also breaks with \mathrm
+% % Adding this to \bfseries instead of adding \boldmath also does not work, as run out of symbol font slots quickly as a new font is loaded each time
+% \setmathfont[version=bold, range={up->bfup, it->bfit}, Path=fonts/, Extension=.otf]{latinmodern-math}
+% % Workaround to not set all maths characters bold (does not work): https://tex.stackexchange.com/questions/348481/when-specifying-a-character-in-unicode-maths-range-option-why-are-alternativ
+% \setmathfont[version=default, range={}]{latinmodern-math}
+% \setmathfont[version=bold, range={}]{latinmodern-math}
+
+% Correct spacing for maths fonts (fix for unicode-math)
+\mathitalicsmode=1
+
+
+%%%%%%%%%%math
+% MATHEMATICS
+
+% Allow multline equations to break across pages when strictly necessary (package amsmath)
+\allowdisplaybreaks[1]
+
+% Declare bracket commands for use instead of \left and \right (package mathtools)
+\DeclarePairedDelimiter{\parens}{(}{)}
+\DeclarePairedDelimiter{\bracks}{[}{]}
+\DeclarePairedDelimiter{\braces}{\{}{\}}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
+% Custom command for given relations
+\newcommand{\given}{{\mathchoice{\:}{\:}{}{}\ifnum\currentgrouptype=16 \middle\fi\vert\mathchoice{\:}{\:}{}{}}}
+% \ifnum\currentgrouptype=16 \middle\fi - If currently between delimiters that are automatically sized by \left and \right, use automatic sizing with \middle
+
+% % Make maths environments in section headings bold (mostly does not work)
+% \makeatletter \g@addto@macro\bfseries{\boldmath} \makeatother
+
+% Set the normal epsilon (ε) as default, instead of the lunate epsilon (ϵ) (package unicode-math)
+% AtBeginDocument is necessary as unicode-math redefines \epsilon and \varepsilon etc. right before \begin{document}, which may be a bug
+\AtBeginDocument{ \renewcommand{\epsilon}{ε} \renewcommand{\varepsilon}{ϵ} }
+
+
+%%%%%%%%%%type
+% TYPOGRAPHY
+
+% Custom text formatting commands
+\newcommand{\an}[1]{{\addfontfeatures{Numbers={Lining}}#1}}  % Sequences of lining alphanumeric characters (smallcaps not implemented)
+\newcommand{\asc}[1]{{\scfont #1}}  % Larger smallcaps in Libertinus for acronyms or alphanumeric sequences with uppercase and oldstyle numerals (visually imperfect workaround)
+
+% Configure package siunitx (package fontspec)
+\sisetup{
+	binary-units=true, per-mode=symbol, sticky-per=true, group-digits=false, separate-uncertainty=true,
+	detect-all,  % Font features
+	table-number-alignment=center, text-rm={\addfontfeatures{Numbers={Lining}}},
+}
+
+
+%%%%%%%%%%fig
+% FIGURES AND TABLES
+
+% Set path for included graphics (package graphicx, tikz)
+\graphicspath{ {./images/} }
+
+% Custom command to centre text in an otherwise-aligned column
+\newcommand{\thead}[1]{\multicolumn{1}{c}{#1}}
+
+% Number formatting in tables
+\AtBeginEnvironment{tabular}{
+	% Enable lining and tabular figures for regular columns (package fontspec)
+	% \addfontfeatures{Numbers={Monospaced, Lining}}
+	% Enable lining and tabular figures for S columns (not necessary if global sisetup includes this setting) (package siunitx, fontspec)
+	\sisetup{ text-rm={\addfontfeatures{Numbers={Monospaced, Lining}}} }
+	% Use uncertainties in parentheses instead of with plus-minus (package siunitx)
+	% \sisetup{ separate-uncertainty=false }
+}
+
+
+%%%%%%%%%%draft
+% DRAFTING ANNOTATIONS (enable during drafting only)
+
+% % Show text block, header, footer and sidebar boundaries and crop marks (package geometry)
+% \geometry{showframe, showcrop}
+
+% % Colour hyperlinks (package hyperref)
+% \hypersetup{colorlinks}
+
+% % Disable bookmark generation for quicker builds (package bookmark)
+% \bookmarksetup{draft=true}
+
+
+%%%%%%%%%%pre
+% PREAMBLE (document-specific options)
+
+% Bibliography file (package biblatex)
+% \addbibresource{document.bib}
+
+% Page layout (package geometry)
+\geometry{margin=1in}
+
+% Reduce captions font size (package caption)
+% \captionsetup{font=small}
+
+% Show section numbering up to a certain depth only
+% \setcounter{secnumdepth}{1}
+
+% Modify equation numbering format
+% \renewcommand{\theequation}{\asc{L}\arabic{equation}}
+
+% Custom maths constants and other macros
+\renewcommand{\d}{d}  % should be \mathit{d} but font not working
+\newcommand{\e}{e}
+\renewcommand{\i}{\symrm{j}}
+\newcommand{\cpi}{\pi}
+
+% Custom maths operators (similar to nabla, sin, etc.)
+\DeclareMathOperator{\E}{E}
+
+% Acronyms (package glossaries)
+\newacronym{pdf}{\asc{PDF}}{probability density function}
+\newacronym{cdf}{\asc{CDF}}{cumulative density function}
+
+
+%%%%%%%%%%doc
+\begin{document}
+	\title{Title}
+	\author{Author}
+	\date{}
+
+	\maketitle
+
+	\section{Introduction}
+
+		Introductory text
+
+	\section{Main section}
+
+		Main text
+
+\end{document}
