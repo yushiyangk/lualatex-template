@@ -1,0 +1,10 @@
+\ProvidesPackage{yushiyang-biblatex}
+
+% Provide automatically formatted citations and references sections
+% \usepackage{biblatex}
+\usepackage[citestyle=verbose-inote, bibstyle=numeric]{biblatex}
+	% language=australian to remove the stupid ordinals from dates; stupid thing doesn't work, must be set in documentclass
+	\ExecuteBibliographyOptions{autocite=footnote, sorting=none, autopunct=false, alldates=long, dateabbrev=false}
+	\renewbibmacro{in:}{}  % Remove the "in:" label from citations of a part of a larger work
+	\DefineBibliographyStrings{english}{ urlseen={accessed}	}  % "URL: <url> (accessed <date>)" for any English variant
+% \usepackage{biblatex-chicago}

@@ -1,0 +1,51 @@
+\ProvidesPackage{yushiyang-pgfplots}
+
+% Provide function or data plots
+\usepackage{pgfplots}
+
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{
+	compat=1.17,
+	%
+	ticklabel style={
+		/pgf/number format/fixed,
+		/pgf/number format/fixed zerofill,
+		/pgf/number format/1000 sep={}
+	},
+	%
+	% Divide all tick labels by a common factor and label the common factor at the end
+	%  true|false|base 10:<exponent>|real:<number>|manual:{<label>}{<code>}
+	scaled x ticks=false,
+	scaled y ticks=false,
+	scaled z ticks=false,
+	%
+	major tick style={ draw=none },
+	minor tick style={ draw=none },
+	%
+	xlabel style={ align=center },
+	ylabel style={ align=center },
+	zlabel style={ align=center },
+	%
+	grid=both,
+	major grid style={ very thin },
+	minor grid style={ ultra thin },
+	%
+	cycle list/Set1,
+	cycle list name=Set1,
+	%cycle list={ {blue, mark=x}, {red, mark=+}, {olive, mark=triangle} },
+	%
+	% Which bounds of uncertainty (upper or lower) to show, if defined
+	%  none|plus|minus|both
+	error bars/x dir=both,
+	error bars/y dir=both,
+	error bars/z dir=both,
+	%
+	% Set to true to only draw error bars when a value is explicitly given
+	error bars/x explicit=true,
+	error bars/y explicit=true,
+	error bars/z explicit=true,
+	%
+	legend style={
+		cells={ anchor=west }
+	},
+}

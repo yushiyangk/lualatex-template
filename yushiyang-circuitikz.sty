@@ -1,0 +1,132 @@
+\ProvidesPackage{yushiyang-circuitikz}
+
+\usepackage[siunitx, straightvoltages]{circuitikz}
+
+% From ctikzstyle-yushiyang.tex
+
+% Adapted from romano style for circuitikz
+% Do not use LaTeX commands if you want it to be compatible with ConTeXt
+% Do not add spurious spaces
+\tikzset{yushiyang circuit style/.style={%
+% generic tikz-level settings
+voltage dir=RP,%
+%circutikz-level settings
+\circuitikzbasekey/.cd,%
+straight voltages,%
+european currents,%
+bipoles/length=1cm,%
+component text=left,
+left text distance=0.3em,
+% Resistors
+american resistors,%
+resistors/scale=1.0,
+resistors/thickness=1.5,
+%
+% Capacitors
+capacitors/scale=0.9,
+capacitors/thickness=1.5,
+%
+% Inductors (and transformers)
+cute inductors,%
+inductors/scale=1.2,
+inductors/thickness=1.5,
+%
+% Diodes
+diodes/scale=0.8,
+diodes/thickness=1.5,
+%
+% Batteries
+batteries/scale=0.9,
+batteries/thickness=1.5,
+%
+% Sources (the round and diamond-shaped ones!)
+sources/scale=1.0,
+sources/thickness=1.5,
+csources/scale=1.0,
+csources/thickness=1.5,
+bipoles/noise sources/fillcolor=dashed,
+%
+% Ground symbols
+grounds/scale=1.0,
+grounds/thickness=1.5,
+%
+% Instruments
+instruments/scale=1.0,
+instruments/thickness=1.5,
+%
+% Mechanical analogy
+mechanicals/scale=1.0,
+mechanicals/thickness=1.5,
+%
+% Misc components (look at the manual)
+misc/scale=1.0,
+misc/thickness=1.5,
+%
+% Transistors
+transistors/scale=1.3,
+transistors/thickness=2.0,
+tripoles/mos style=arrows,  % it can be "arrows"
+tripoles/pmos style=emptycircle, % it can be "fullcircle", "nocircle"
+%transistors/arrow pos=end, % it can be "end"
+%
+% Vacuum tubes
+tubes/scale=1.0,
+tubes/thickness=1.5,
+%
+% RF components
+RF/scale=1.0,
+RF/thickness=1.5,
+%
+% Electromechanical
+electromechanicals/scale=1.0,
+electromechanicals/thickness=1.5,
+%
+% Amplifiers
+amplifiers/scale=1.0,
+amplifiers/thickness=1.5,
+%
+% Logic gates
+logic ports=ieee,%
+american or shape=pointy,
+logic ports/scale=1.0,
+logic ports/thickness=1.5,
+logic ports origin=center,
+%
+% Switches (they're a bit special, look the manual)
+switches/scale=1.0,
+switches/thickness=1.5,
+bipoles/cuteswitch/thickness=0.4,
+%
+% Flip-flops
+flipflops/scale=1.3,
+flipflops/thickness=1.5,
+%
+% Logic blocks
+blocks/scale=1.0,
+blocks/thickness=1.5,
+%
+% Multiplexers
+% muxesdemuxes/scale=1.0,  % Invalid key
+% muxesdemuxes/thickness=1.5,  % Invalid key
+%
+% Displays
+displays/scale=1.0,
+displays/thickness=1.5,
+%
+% Integrated circuits
+chips/scale=1.0,
+chips/thickness=1.5,
+%
+% Crossings
+bipoles/crossing/size=0.5,
+%
+% I am not sure I like them... (from romano)
+% monopoles/vcc/arrow={Triangle[width=0.8*\scaledwidth, length=\scaledwidth]},
+% monopoles/vee/arrow={Triangle[width=0.8*\scaledwidth, length=\scaledwidth]},
+},% end .style
+}% end \tikzset
+% You can add more commands here
+% Do not use LaTeX commands if you want it to be compatible with ConTeXt
+% Do not add spurious spaces
+
+\ctikzsetstyle{yushiyang}

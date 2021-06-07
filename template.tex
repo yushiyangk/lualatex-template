@@ -13,6 +13,7 @@
 % - Preamble, specific to this document (%pre)
 % - Document (%doc)
 
+
 %%%%%%%%%%opt
 % OPTIONAL PACKAGES
 
@@ -41,26 +42,17 @@
 % \usepackage{tikz}  % Provide general vector graphics (basis of most embedded graphics packages)
 % \usepackage{yushiyang-pgfplots}  % Provide function or data plots
 
+%% Chemistry
+% \usepackage{mhchem}  % Provide chemical formulae and equations
+
 %% Electronics
 % \usepackage{yushiyang-circuitikz}  % Provide circuit diagrams
 
-%%% Chemistry
-% \usepackage{mhchem}  % Provide chemical formulae and equations
+%% Software
+% \usepackage{yushiyang-minted} % Provide source code environment with syntax highlighting (requires compiling with the -shell-escape option BEFORE the input file argument, and requires Python package Pygments; pip install Pygments)
 
-%%% Software
-% \usepackage[newfloat]{minted}  % Provide source code environment with syntax highlighting (requires compiling with the -shell-escape option BEFORE the input file, and requires Python package Pygments; pip install Pygments)
-% % \usepackage[newfloat, frozencache, cachedir=minted-frozencache]{minted}  % Provide source code environment with syntax highlighting (requires compiling with the -shell-escape option BEFORE the input file, and requires Python package Pygments; pip install Pygments)
-% 	\setminted{obeytabs, tabsize=4, breaklines, breakindentnchars=2, breaksymbolindentleftnchars=0, breaksymbolsepleftnchars=1, linenos, autogobble}
-% 	\setminted{xleftmargin=\leftmargini, xrightmargin=\leftmargini}  % Match list indentation
-% 	\renewcommand\theFancyVerbLine{\BeginAccSupp{ActualText={aa}}\texttt{\small \color{LightGrey} \arabic{FancyVerbLine}}\EndAccSupp{}}  % Format line numbers as monospace and grey
-% 	% \captionsetup[listing]{position=top}  % Change listing floats introduced by minted to have spacing for captions above instead of below
-% 	\usemintedstyle{vs}
-
-
-%%% Management
-% \usepackage{pgfgantt}  % Provide Gantt charts
-% 	\ganttset{time slot format=isodate, vgrid}
-
+%% Management
+% \usepackage{yushiyang-pgfgantt}  % Provide Gantt charts
 
 
 %%%%%%%%%%draft

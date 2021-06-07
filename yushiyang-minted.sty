@@ -1,0 +1,33 @@
+\ProvidesPackage{yushiyang-minted}
+
+% Provide source code environment with syntax highlighting
+% Requires compiling with the -shell-escape option BEFORE the input file argument, and requires Python package Pygments; pip install Pygments)
+\usepackage[newfloat]{minted}
+% \usepackage[newfloat, frozencache, cachedir=minted-frozencache]{minted}
+
+\setminted{
+	obeytabs,
+	tabsize=4,
+	%
+	breaklines,
+	breakindentnchars=2,
+	breaksymbolindentleftnchars=0,
+	breaksymbolsepleftnchars=1,
+	%
+	linenos,
+	autogobble
+}
+
+% Format line numbers as monospace and grey
+\renewcommand\theFancyVerbLine{\BeginAccSupp{ActualText={aa}}\texttt{\small \color{LightGrey} \arabic{FancyVerbLine}}\EndAccSupp{}}
+
+% Match list indentation
+\setminted{
+	xleftmargin=\leftmargini,
+	xrightmargin=\leftmargini
+}
+
+% Change listing floats introduced by minted to have spacing for captions above instead of below
+% \captionsetup[listing]{position=top}
+
+\usemintedstyle{vs}
