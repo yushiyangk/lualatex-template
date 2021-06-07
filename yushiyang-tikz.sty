@@ -1,6 +1,7 @@
-\ProvidesPackage{yushiyang-pgfgantt}
+\ProvidesPackage{yushiyang-tikz}
 
-\usepackage{pgfgantt}  % Provide Gantt charts
+% Provide general vector graphics (basis of most embedded graphics packages)
+\usepackage{tikz}
 
 % Improve TikZ compatibility with package babel
 \usetikzlibrary{babel}
@@ -10,5 +11,3 @@
 \usetikzlibrary{external}
 \tikzexternalize
 \tikzsetexternalprefix{tikz/}
-
-\ganttset{time slot format=isodate, vgrid}

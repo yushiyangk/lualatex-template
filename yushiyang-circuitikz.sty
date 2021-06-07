@@ -1,13 +1,26 @@
 \ProvidesPackage{yushiyang-circuitikz}
 
+% Provide circuit diagrams
 \usepackage[siunitx, straightvoltages]{circuitikz}
 
-% From ctikzstyle-yushiyang.tex
+% Improve TikZ compatibility with package babel
+\usetikzlibrary{babel}
+
+% Externalise TikZ graphics to reduce recompilation (see TikZ manual)
+% Requires --shell-escape option
+\usetikzlibrary{external}
+\tikzexternalize
+\tikzsetexternalprefix{tikz/}
+
+% The following is from ctikzstyle-yushiyang.tex
+% The line starting with "\tikzset{" has been modified (original commented)
+% The line containing "},% end .style" has been commented out
 
 % Adapted from romano style for circuitikz
 % Do not use LaTeX commands if you want it to be compatible with ConTeXt
 % Do not add spurious spaces
-\tikzset{yushiyang circuit style/.style={%
+% \tikzset{yushiyang circuit style/.style={%
+\tikzset{
 % generic tikz-level settings
 voltage dir=RP,%
 %circutikz-level settings
@@ -123,10 +136,8 @@ bipoles/crossing/size=0.5,
 % I am not sure I like them... (from romano)
 % monopoles/vcc/arrow={Triangle[width=0.8*\scaledwidth, length=\scaledwidth]},
 % monopoles/vee/arrow={Triangle[width=0.8*\scaledwidth, length=\scaledwidth]},
-},% end .style
+% },% end .style
 }% end \tikzset
 % You can add more commands here
 % Do not use LaTeX commands if you want it to be compatible with ConTeXt
 % Do not add spurious spaces
-
-\ctikzsetstyle{yushiyang}
