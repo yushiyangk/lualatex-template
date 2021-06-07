@@ -4,12 +4,19 @@
 % CONTENTS
 % Navigate to a section quickly by searching for the %-tag
 % - Deficiencies (%def)
-% - Standard packages (%std)
-% - Layout, sections and linking (%lay)
+% - Packages
+%   - Essential packages (%ess)
+%   - Page layout packages (%lay)
+%   - Typography packages (%typo)
+%   - Block-level text packages (%blk)
+%   - Mathematics packages (%math)
+%   - Tables and figures packages (%fig)
+%   - Sections and linking packages (%sec)
+%   - Unicode mathematics packages (%um)
 % - Fonts (%font)
-% - Mathematics (%math)
-% - Typography (%typo)
-% - Figures and tables (%fig)
+% - Mathematics commands (%mc)
+% - Typography commands (%tc)
+% - Table and figure commands (%fc)
 
 
 %%%%%%%%%%def
@@ -26,105 +33,196 @@
 % - Author \thanks footnote marks should have rlap reinstated when it is at the end of a line (or when using \and)
 
 
-%%%%%%%%%%std
-% STANDARD PACKAGES
+%%%%%%%%%%ess
+% ESSENTIAL PACKAGES
 
-%%% Essential packages
-\usepackage[l2tabu, orthodox]{nag}  % Warn about obsolete practices
-% \usepackage{dblfloatfix}  % Fixes for floats in a two-column layout
-\usepackage{xspace}  % Provide the addition of an automatic space after macros when in text environments using \xspace
-\usepackage[svgnames]{xcolor}  % Enable colours
-\usepackage{graphicx}  % Enable images
+% Warn about obsolete practices
+\usepackage[l2tabu, orthodox]{nag}
 
-%%% Page layout
-\usepackage{geometry}  % Provide adjustments for page and margin dimensions
-\usepackage{multicol}  % Support multicolumn layout
-\usepackage{pdfpages}  % Enable inclusion of entire PDF pages
+% Fixes for floats in a two-column layout
+% \usepackage{dblfloatfix}
 
-%%% Basic typography
-\usepackage[no-math]{fontspec}  % Support OpenType fonts for text environments (no-math prevents changes to \mathrm in maths environments)
-\usepackage{babel}  % Enable multilingual support
-\usepackage{microtype}  % Automatic micro-typographic adjustments, e.g. character protrusion and font expansion
-\usepackage[all]{nowidow}  % Prevent paragraphs with widowed lines (all applies restriction to all paragraphs)
-\usepackage{relsize}  % Enable relative font sizing
-\usepackage{fvextra}  % Improvements to verbatim environments (not used directly, but used by package minted, load before csquotes)
-\usepackage[strict=true]{csquotes}  % Provide smart quotes (autopunct disables reordering of punctuation)
+% Provide the addition of an automatic space after macros when in text environments using \xspace
+\usepackage{xspace}
+
+% Enable colours
+\usepackage[svgnames]{xcolor}
+
+% Enable images
+\usepackage{graphicx}
+	\graphicspath{ {./images/} }
+
+
+%%%%%%%%%%lay
+% PAGE LAYOUT PACKAGES
+
+% Provide adjustments for page and margin dimensions
+\usepackage{geometry}
+	\geometry{heightrounded}  % Round height of text block to a multiple of \baselineskip
+
+% Support multicolumn layout
+\usepackage{multicol}
+
+% Enable inclusion of entire PDF pages
+\usepackage{pdfpages}
+
+
+%%%%%%%%%%typo
+% TYPOGRAPHY PACKAGES
+
+% Support OpenType fonts for text environments (no-math prevents changes to \mathrm in maths environments)
+\usepackage[no-math]{fontspec}
+
+% Enable multilingual support
+\usepackage{babel}
+
+% Automatic micro-typographic adjustments, e.g. character protrusion and font expansion
+\usepackage{microtype}
+
+% Prevent paragraphs with widowed lines (all applies restriction to all paragraphs)
+\usepackage[all]{nowidow}
+
+% Enable relative font sizing
+\usepackage{relsize}
+
+% Improvements to verbatim environments (not used directly, but used by package minted, load before csquotes)
+\usepackage{fvextra}
+
+% Provide smart quotes (autopunct disables reordering of punctuation)
+\usepackage[strict=true]{csquotes}
 	\ExecuteQuoteOptions{autostyle=true, autopunct=false}
-	% Make double quotes outer quotes like normal people; silly rearrangements of punctuation with "american" should be disabled by autopunct=false
-	\DeclareQuoteAlias{american}{british} \DeclareQuoteAlias{american}{australian} \DeclareQuoteAlias{american}{newzealand}
-	\MakeOuterQuote{"}  % Automatically replace " with smart quotes
 
-%%% Block-level texts
-\usepackage{titling}  % Enable document title layout adjustments
-	\thanksmarkseries{alph} \continuousmarks  % Subsequent footnotes after title continues the alphabet
-\usepackage{authblk}  % Provide author affiliations formatting
-	\renewcommand\Authands{, }  % Do not add "and" between final two author names, when there are more than two authors
-	\let\oldthanks\thanks \renewcommand\thanks[1]{\begingroup\let\rlap\relax\oldthanks{#1}\endgroup} % Fix stupid rlap of footnote marks in authors list
-\usepackage{titlesec}  % Enable section heading layout adjustments
-\usepackage{enumitem}  % Enable list layout adjustments
+	% Make double quotes outer quotes like normal people
+	% Silly rearrangements of punctuation with "american" should be disabled by autopunct=false
+	\DeclareQuoteAlias{american}{british}
+	\DeclareQuoteAlias{american}{australian}
+	\DeclareQuoteAlias{american}{newzealand}
 
-%%% Mathematics
-\usepackage[tbtags]{mathtools}  % Superset of amsmath; provide various equation environments, complex maths formatting and misc maths macros (tbtags places equation numbers at the top or bottom for a split equation)
-\usepackage{amssymb}  % Provide additional maths symbols
-\usepackage{siunitx}[=v2]  % Provide formatted numerals and unit symbols, and S table columns for aligning numerals of varying digit lengths
+	% Automatically replace " with smart quotes
+	\MakeOuterQuote{"}
+
+
+%%%%%%%%%%blk
+% BLOCK-LEVEL TEXT PACKAGES
+
+% Enable document title layout adjustments
+\usepackage{titling}
+	\thanksmarkseries{alph}  % Use letters for footnote marks
+	\continuousmarks  % Subsequent footnotes after title section continues instead of resetting
+
+% Provide author affiliations formatting
+\usepackage{authblk}
+	% Do not add "and" between final two author names, when there are more than two authors
+	\renewcommand\Authands{, }
+
+	% Fix stupid rlap of footnote marks in authors list
+	\let\oldthanks\thanks
+	\renewcommand\thanks[1]{\begingroup\let\rlap\relax\oldthanks{#1}\endgroup}
+
+% Enable section heading layout adjustments
+\usepackage{titlesec}
+
+% Enable list layout adjustments
+\usepackage{enumitem}
+
+
+%%%%%%%%%%m
+% MATHEMATICS PACKAGES
+
+% Superset of amsmath
+% Provide various equation environments, complex maths formatting and misc maths macros (tbtags places equation numbers at the top or bottom for a split equation)
+\usepackage[tbtags]{mathtools}
+	% Allow multline equations to break across pages when strictly necessary (package amsmath)
+	\allowdisplaybreaks[1]
+
+	% Declare bracket commands for use instead of \left and \right (package mathtools)
+	\DeclarePairedDelimiter{\parens}{(}{)}
+	\DeclarePairedDelimiter{\bracks}{[}{]}
+	\DeclarePairedDelimiter{\braces}{\{}{\}}
+	\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
+% Provide additional maths symbols
+\usepackage{amssymb}
+
+% Provide formatted numerals and unit symbols, and S table columns for aligning numerals of varying digit lengths
+\usepackage{siunitx}[=v2]
 	\sisetup{
 		binary-units=true, per-mode=symbol, sticky-per=true, group-digits=false, separate-uncertainty=true,
 		detect-all,  % Font features
 		table-number-alignment=center, text-rm={\addfontfeatures{Numbers={Lining}}},
 	}
-\usepackage{mleftright}  % Remove spaces around brackets that use \left and \right
+
+% Remove spaces around brackets that use \left and \right
+\usepackage{mleftright}
 	\mleftright  % Remove spaces around all brackets that use \left and \right (package mleftright)
-\usepackage{xfrac}  % Provide diagonal split-level fractions using \sfrac
 
-%%% Tables and figures
-\usepackage{float}  % Enable float layout adjustments and custom floats (consider using newfloat intead), and provide the strong place-here flag [H]
-\usepackage{caption}  % Enable caption layout adjustments
-\usepackage{subcaption}  % Provide subfigures and subtables, with subcaptions
-\usepackage{placeins}  % Provide float placement boundaries using \FloatBarrier
-\usepackage{booktabs}  % Provide well-formatted tables
-\usepackage{multirow}  % Provide multirow cells in tabular environments
+% Provide diagonal split-level fractions using \sfrac
+\usepackage{xfrac}
 
-%%% Sections and linking
-\usepackage{hyperref}  % Automatic hyperlinks in output
-	\hypersetup{unicode, psdextra,
-		hidelinks, citecolor=green, filecolor=cyan, linkcolor=blue, menucolor=blue, urlcolor=cyan, citebordercolor=green, filebordercolor=cyan, linkbordercolor=blue, menubordercolor=blue, urlbordercolor=cyan, bookmarksnumbered, bookmarksopen, CJKbookmarks,
-	}
-\usepackage{bookmark}  % Enable output adjustments for bookmarks produced by hyperref
-\usepackage{accsupp}  % Accessibility support; allows modifying selectable text (load after hyperref)
-\usepackage{embedfile}  % Enable embedding files in the PDF output
-\usepackage{hypgotoe}  % Provide hyperlinks to embedded PDFs in the PDF output
-%% Optional
-\usepackage{glossaries}  % Provide automatically formatted acronyms and index and glossary sections (load after hyperref)
-	% \setacronymstyle{long-short}
-	\glsdisablehyper  % Do not hyperlink any terms in the text
 
-%%% Unicode mathematics
-\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}  % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
-	% warnings-off={...} disables warnings about redefined \overbracket, \underbracket, \dblcolon, \coloneqq, \Coloneqq, \eqqcolon due to package mathtools
+%%%%%%%%%%fig
+% TABLES AND FIGURES PACKAGES
+
+% Enable float layout adjustments and custom floats (consider using newfloat intead), and provide the strong place-here flag [H]
+\usepackage{float}
+
+% Enable caption layout adjustments
+\usepackage{caption}
+	\captionsetup{labelsep=period, margin=\parindent}  % Set caption label separator to dot instead of default colon
+
+% Provide subfigures and subtables, with subcaptions
+\usepackage{subcaption}
+
+% Provide float placement boundaries using \FloatBarrier
+\usepackage{placeins}
+
+% Provide well-formatted tables
+\usepackage{booktabs}
+
+% Provide multirow cells in tabular environments
+\usepackage{multirow}
 
 
 %%%%%%%%%%sec
-% LAYOUT, SECTIONS AND LINKING
+% SECTIONS AND LINKING PACKAGES
 
-% Round height of text block to a multiple of \baselineskip (package geometry)
-\geometry{heightrounded}
+% Automatic hyperlinks in PDF output
+\usepackage{hyperref}
+	\hypersetup{unicode, psdextra,
+		hidelinks, citecolor=green, filecolor=cyan, linkcolor=blue, menucolor=blue, urlcolor=cyan, citebordercolor=green, filebordercolor=cyan, linkbordercolor=blue, menubordercolor=blue, urlbordercolor=cyan, bookmarksnumbered, bookmarksopen, CJKbookmarks,
+	}
 
-% % No floats outside of sections (package placeins)
-% \let\Oldsection\section \renewcommand{\section}{\FloatBarrier\Oldsection}
-% \let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
-% \let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
+	% Convert formatting commands to plain text in bookmark labels
+	\pdfstringdefDisableCommands{%
+		% Custom formatting commands
+		\renewcommand{\an}[1]{#1}
+		\renewcommand{\asc}[1]{#1}
+		% Maths mode
+		\renewcommand{\sin}{sin}
+	}
 
-% Use dot as separators
-\captionsetup{labelsep=period, margin=\parindent}  % Set caption label separator to dot instead of default colon (package caption)
-\makeatletter \renewcommand{\Hy@numberline}[1]{#1. } \makeatother  % Add dot after section numbers in bookmarks (package hyperref, bookmark)
+% Enable output adjustments for bookmarks produced by hyperref
+\usepackage{bookmark}
+	% Add a dot after section numbers in bookmarks (also requires hyperref)
+	\makeatletter
+		\renewcommand{\Hy@numberline}[1]{#1. }
+	\makeatother
 
-% Convert formatting commands to plain text in bookmark labels (package hyperref)
-\pdfstringdefDisableCommands{%
-	\renewcommand{\an}[1]{#1}
-	\renewcommand{\asc}[1]{#1}
-	% Maths mode
-	\renewcommand{\sin}{sin}
-}
+% Accessibility support; allows modifying selectable text (load after hyperref)
+% Note that modified selectable text is not supported by all PDF viewers (including SumatraPDF)
+\usepackage{accsupp}
+
+% Provide automatically formatted acronyms and index and glossary sections (load after hyperref)
+\usepackage{glossaries}
+	% \setacronymstyle{long-short}
+	\glsdisablehyper  % Do not hyperlink any terms in the text
+
+
+%%%%%%%%%%um
+% UNICODE MATHEMATICS
+%%% Unicode mathematics
+\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}  % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
+	% warnings-off={...} disables warnings about redefined \overbracket, \underbracket, \dblcolon, \coloneqq, \Coloneqq, \eqqcolon due to package mathtools
 
 
 %%%%%%%%%%font
@@ -181,42 +279,40 @@
 
 
 %%%%%%%%%%math
-% MATHEMATICS
+% MATHEMATICS COMMANDS
 
-% Allow multline equations to break across pages when strictly necessary (package amsmath)
-\allowdisplaybreaks[1]
-
-% Declare bracket commands for use instead of \left and \right (package mathtools)
-\DeclarePairedDelimiter{\parens}{(}{)}
-\DeclarePairedDelimiter{\bracks}{[}{]}
-\DeclarePairedDelimiter{\braces}{\{}{\}}
-\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
-
-% Custom command for given relations
+% Given relations
 \newcommand{\given}{{\mathchoice{\:}{\:}{}{}\ifnum\currentgrouptype=16 \middle\fi\vert\mathchoice{\:}{\:}{}{}}}
 % \ifnum\currentgrouptype=16 \middle\fi - If currently between delimiters that are automatically sized by \left and \right, use automatic sizing with \middle
 
 % % Make maths environments in section headings bold (mostly does not work)
-% \makeatletter \g@addto@macro\bfseries{\boldmath} \makeatother
+% \makeatletter
+% 	\g@addto@macro\bfseries{\boldmath}
+% \makeatother
 
 % Set the normal epsilon (ε) as default, instead of the lunate epsilon (ϵ) (package unicode-math)
 % AtBeginDocument is necessary as unicode-math redefines \epsilon and \varepsilon etc. right before \begin{document}, which may be a bug
-\AtBeginDocument{ \renewcommand{\epsilon}{ε} \renewcommand{\varepsilon}{ϵ} }
+\AtBeginDocument{
+	\renewcommand{\epsilon}{ε}
+	\renewcommand{\varepsilon}{ϵ}
+}
 
 
 %%%%%%%%%%type
-% TYPOGRAPHY
+% TYPOGRAPHY COMMANDS
 
 % Custom text formatting commands
-\newcommand{\an}[1]{{\addfontfeatures{Numbers={Lining}}#1}}  % Sequences of lining alphanumeric characters (smallcaps not implemented)
-\newcommand{\asc}[1]{{\scfont #1}}  % Larger smallcaps in Libertinus for acronyms or alphanumeric sequences with uppercase and oldstyle numerals (visually imperfect workaround)
+
+% Sequences of lining alphanumeric characters (smallcaps not implemented)
+\newcommand{\an}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
+
+% Larger smallcaps in Libertinus for acronyms or alphanumeric sequences with uppercase and oldstyle numerals (visually imperfect workaround)
+\newcommand{\asc}[1]{{\scfont #1}}
+
 
 
 %%%%%%%%%%fig
-% FIGURES AND TABLES
-
-% Set path for included graphics (package graphicx, tikz)
-\graphicspath{ {./images/} }
+% TABLE AND FIGURE COMMANDS
 
 % Custom command to centre text in an otherwise-aligned column
 \newcommand{\thead}[1]{\multicolumn{1}{c}{#1}}
@@ -225,8 +321,7 @@
 \AtBeginEnvironment{tabular}{
 	% Enable lining and tabular figures for regular columns (package fontspec)
 	% \addfontfeatures{Numbers={Monospaced, Lining}}
+
 	% Enable lining and tabular figures for S columns (not necessary if global sisetup includes this setting) (package siunitx, fontspec)
-	\sisetup{ text-rm={\addfontfeatures{Numbers={Monospaced, Lining}}} }
-	% Use uncertainties in parentheses instead of with plus-minus (package siunitx)
-	% \sisetup{ separate-uncertainty=false }
+	\sisetup{ text-rm={ \addfontfeatures{Numbers={Monospaced, Lining}} } }
 }

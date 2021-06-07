@@ -20,13 +20,15 @@
 % \usepackage{lua-visual-debug}  % Activate this package to draw boxes and rules in output for debugging
 % \usepackage{parskip}  % Add spacing between paragraphs and remove indentation
 
-% Tables and figures
+%% Tables and figures
 % \usepackage{rotfloat}  % Provide rotated floats
 % \usepackage{wrapfig}  % Provide tables and figures that are wrapped around by text
 % \usepackage{tcolorbox}  % Provide highlighted boxes
 
-% Sections and linking
+%% Sections and linking
 % \usepackage{appendix}  % Enable appendix layout adjustments and provide subappendices
+% \usepackage{embedfile}  % Support embedding files in the PDF output
+% \usepackage{hypgotoe}  % Provide hyperlinks to embedded PDFs in the PDF output
 % \usepackage{biblatex}  % Provide automatically formatted citations and references sections
 % \usepackage[citestyle=verbose-inote, bibstyle=numeric]{biblatex}
 	% % language=australian to remove the stupid ordinals from dates; stupid thing doesn't work, must be set in documentclass
@@ -91,6 +93,12 @@
 % \bookmarksetup{draft=true}
 
 
+%%%%%%%%%%conf
+% DOCUMENT-SPECIFIC CONFIGURATIONS
+
+% Use uncertainties in parentheses instead of with plus-minus (package siunitx)
+% \sisetup{ separate-uncertainty=false }
+
 %%%%%%%%%%pre
 % PREAMBLE (document-specific options)
 
@@ -99,6 +107,11 @@
 
 % Page layout (package geometry)
 \geometry{margin=1in}
+
+% % No floats outside of sections (package placeins)
+% \let\Oldsection\section \renewcommand{\section}{\FloatBarrier\Oldsection}
+% \let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
+% \let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
 
 % Reduce captions font size (package caption)
 % \captionsetup{font=small}
