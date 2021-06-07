@@ -9,8 +9,9 @@
 % Navigate to a section quickly by searching for the %-tag
 % - Optional packages (%opt)
 % - Specialised packages (%sp)
-% - Drafting annotations (%draft)
-% - Preamble, specific to this document (%pre)
+% - Drafting annotations (%dra)
+% - Document configuration (%conf)
+% - Preamble, document-specific definitions (%pre)
 % - Document (%doc)
 
 
@@ -55,7 +56,7 @@
 % \usepackage{yushiyang-pgfgantt}  % Provide Gantt charts
 
 
-%%%%%%%%%%draft
+%%%%%%%%%%dra
 % DRAFTING ANNOTATIONS (enable during drafting only)
 
 % % Show text block, header, footer and sidebar boundaries and crop marks (package geometry)
@@ -69,21 +70,12 @@
 
 
 %%%%%%%%%%conf
-% DOCUMENT-SPECIFIC CONFIGURATIONS
+% DOCUMENT CONFIGURATION
 
-% Use uncertainties in parentheses instead of with plus-minus (package siunitx)
-% \sisetup{ separate-uncertainty=false }
+% Show section numbering up to a certain depth only
+% \setcounter{secnumdepth}{1}
 
-%%%%%%%%%%pre
-% PREAMBLE (document-specific options)
-
-% Bibliography file (package biblatex)
-% \addbibresource{document.bib}
-
-% Page layout (package geometry)
-\geometry{margin=1in}
-
-% % No floats outside of sections (package placeins)
+% % Keep floats within their sections (package placeins)
 % \let\Oldsection\section \renewcommand{\section}{\FloatBarrier\Oldsection}
 % \let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
 % \let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
@@ -91,27 +83,38 @@
 % Reduce captions font size (package caption)
 % \captionsetup{font=small}
 
-% Show section numbering up to a certain depth only
-% \setcounter{secnumdepth}{1}
-
 % Modify equation numbering format
 % \renewcommand{\theequation}{\asc{L}\arabic{equation}}
 
-% Custom maths constants and other macros
+
+% % Use uncertainties in parentheses instead of with plus-minus (package siunitx)
+% \sisetup{ separate-uncertainty=false }
+
+
+%%%%%%%%%%pre
+% PREAMBLE (document-specific definitions)
+
+%% Bibliography file (package biblatex)
+% \addbibresource{document.bib}
+
+%% Page layout (package geometry)
+\geometry{margin=1in}
+
+%% Custom maths constants and other macros
 \renewcommand{\d}{d}  % should be \mathit{d} but font not working
 \newcommand{\e}{e}
 \renewcommand{\i}{\symrm{j}}
 \newcommand{\cpi}{\pi}
 
-% Custom maths operators (similar to nabla, sin, etc.)
+%% Custom maths operators (similar to nabla, sin, etc.)
 \DeclareMathOperator{\E}{E}
 
-% Colours (package xcolor)
+%% Colours (package xcolor)
 \definecolor{keyword}{HTML}{0000ff}
 \definecolor{type}{HTML}{2b91af}
 \definecolor{comment}{HTML}{008000}
 
-% Acronyms (package glossaries)
+%% Acronyms (package glossaries)
 % \newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
 % \newacronym{gui}{\asc{GUI}}{graphical user interface} \glsunset{gui}
 % \newacronym{gui}{\asc{PDF}}{probability density function}
