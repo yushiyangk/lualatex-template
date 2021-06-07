@@ -18,7 +18,7 @@
 
 % Page layout
 % \usepackage{lua-visual-debug}  % Activate this package to draw boxes and rules in output for debugging
-% \usepackage{parskip}  % Add spacing between paragraphs and remove indentation
+% \usepackage{parskip}  % Activate this package to draw spacing between paragraphs and remove indentation
 
 %% Tables and figures
 % \usepackage{rotfloat}  % Provide rotated floats
@@ -29,37 +29,20 @@
 % \usepackage{appendix}  % Enable appendix layout adjustments and provide subappendices
 % \usepackage{embedfile}  % Support embedding files in the PDF output
 % \usepackage{hypgotoe}  % Provide hyperlinks to embedded PDFs in the PDF output
-% \usepackage{biblatex}  % Provide automatically formatted citations and references sections
-% \usepackage[citestyle=verbose-inote, bibstyle=numeric]{biblatex}
-	% % language=australian to remove the stupid ordinals from dates; stupid thing doesn't work, must be set in documentclass
-	% \ExecuteBibliographyOptions{autocite=footnote, sorting=none, autopunct=false, alldates=long, dateabbrev=false}
-	% \renewbibmacro{in:}{}  % Remove the "in:" label from citations of a part of a larger work
-	% \DefineBibliographyStrings{english}{ urlseen={accessed}	}  % "URL: <url> (accessed <date>)" for any English variant
-% \usepackage{biblatex-chicago}
+
+% Citations
+% \usepackage{yushiyang-biblatex} % Provide automatically formatted citations and references sections
 
 
 %%%%%%%%%%sp
 % SPECIALISED PACKAGES
 
-%%% Graphics
+%% Graphics
 % \usepackage{tikz}  % Provide general vector graphics (basis of most embedded graphics packages)
-% \usepackage{pgfplots}  % Provide function or data plots
-% 	\usepgfplotslibrary{colorbrewer}
-% 	\pgfplotsset{ compat=1.17,
-% 		ticklabel style={ /pgf/number format/fixed, /pgf/number format/fixed zerofill, /pgf/number format/1000 sep={} },
-% 		scaled x ticks=false, scaled y ticks=false, scaled z ticks=false, % true|false|base 10:<exponent>|real:<number>|manual:{<label>}{<code>} (divide all tick labels by a common factor and label the common factor at the end)
-% 		major tick style={ draw=none },	minor tick style={ draw=none },
-% 		xlabel style={ align=center }, ylabel style={ align=center }, zlabel style={ align=center },
-% 		grid=both, major grid style={ very thin }, minor grid style={ ultra thin },
-% 		cycle list/Set1, cycle list name=Set1, %cycle list={ {blue, mark=x}, {red, mark=+}, {olive, mark=triangle} },
-% 		error bars/x dir=both, error bars/y dir=both, error bars/z dir=both,  % none|plus|minus|both (which bounds of uncertainty, upper or lower, to show)
-% 		error bars/x explicit=true, error bars/y explicit=true, error bars/z explicit=true,  % set to true to only draw error bars when a value is explicitly given
-% 		legend style={ cells={ anchor=west } },
-% 	}
+% \usepackage{yushiyang-pgfplots}  % Provide function or data plots
 
-%%% Electronics
-% \usepackage[siunitx, straightvoltages]{circuitikz}  % Provide circuit diagrams
-% 	\ctikzsetstyle{yushiyang}
+%% Electronics
+% \usepackage{yushiyang-circuitikz}  % Provide circuit diagrams
 
 %%% Chemistry
 % \usepackage{mhchem}  % Provide chemical formulae and equations
@@ -145,8 +128,9 @@
 %%%%%%%%%%doc
 \begin{document}
 	\title{Title}
-	\author{Author}
-	\date{}
+	\author{Author\thanks{Author information}}
+	\affil{Institution}
+	\date{1 Jaunary 1970}
 
 	\maketitle
 

@@ -56,7 +56,7 @@
 %%%%%%%%%%lay
 % PAGE LAYOUT PACKAGES
 
-% Provide adjustments for page and margin dimensions
+% Enable adjustments for page and margin dimensions
 \usepackage{geometry}
 	\geometry{heightrounded}  % Round height of text block to a multiple of \baselineskip
 
@@ -73,7 +73,7 @@
 % Support OpenType fonts for text environments (no-math prevents changes to \mathrm in maths environments)
 \usepackage[no-math]{fontspec}
 
-% Enable multilingual support
+% Provide multilingual support
 \usepackage{babel}
 
 % Automatic micro-typographic adjustments, e.g. character protrusion and font expansion
@@ -188,15 +188,34 @@
 
 % Automatic hyperlinks in PDF output
 \usepackage{hyperref}
-	\hypersetup{unicode, psdextra,
-		hidelinks, citecolor=green, filecolor=cyan, linkcolor=blue, menucolor=blue, urlcolor=cyan, citebordercolor=green, filebordercolor=cyan, linkbordercolor=blue, menubordercolor=blue, urlbordercolor=cyan, bookmarksnumbered, bookmarksopen, CJKbookmarks,
+	\hypersetup{
+		unicode,
+		psdextra,
+		%
+		hidelinks,
+		%
+		citecolor=green,
+		filecolor=cyan,
+		linkcolor=blue,
+		menucolor=blue,
+		urlcolor=cyan,
+		citebordercolor=green,
+		filebordercolor=cyan,
+		linkbordercolor=blue,
+		menubordercolor=blue,
+		urlbordercolor=cyan,
+		%
+		bookmarksnumbered,
+		bookmarksopen,
+		CJKbookmarks,
 	}
 
 	% Convert formatting commands to plain text in bookmark labels
 	\pdfstringdefDisableCommands{%
-		% Custom formatting commands
+		% Custom typography commands
 		\renewcommand{\an}[1]{#1}
 		\renewcommand{\asc}[1]{#1}
+
 		% Maths mode
 		\renewcommand{\sin}{sin}
 	}
@@ -220,8 +239,9 @@
 
 %%%%%%%%%%um
 % UNICODE MATHEMATICS
-%%% Unicode mathematics
-\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}  % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
+
+% Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
+\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}
 	% warnings-off={...} disables warnings about redefined \overbracket, \underbracket, \dblcolon, \coloneqq, \Coloneqq, \eqqcolon due to package mathtools
 
 
@@ -229,28 +249,67 @@
 % FONTS
 
 % Libertinus as main font (package fontspec)
-\setmainfont[Path=fonts/, Extension=.otf,
-	UprightFont=*-Regular, ItalicFont=*-Italic, BoldFont=*-Bold, BoldItalicFont=*-BoldItalic,
-	Kerning=On, Contextuals={Alternate}, Ligatures={Common, Rare}, Numbers={Proportional, OldStyle}, StylisticSet={4},  % SS4 replaces capital Eszett with double S
-]{LibertinusSerif}  % Default Latin Modern
+\setmainfont[  % Default Latin Modern
+	Path=fonts/,
+	Extension=.otf,
+	UprightFont=*-Regular,
+	ItalicFont=*-Italic,
+	BoldFont=*-Bold,
+	BoldItalicFont=*-BoldItalic,
+	%
+	Kerning=On,
+	Contextuals={Alternate},
+	Ligatures={Common,
+	Rare},
+	Numbers={Proportional, OldStyle},
+	StylisticSet={4},  % SS4 replaces capital Eszett with double S
+]{LibertinusSerif}
 
 % Scaled Libertinus for use with \asc custom command, which is a visually imperfect workaround for the lack of appropriately-sized smallcaps in Libertinus
-\newfontfamily\scfont[Path=fonts/, Extension=.otf,
-	UprightFont=*-Regular, ItalicFont=*-Italic, BoldFont=*-Bold, BoldItalicFont=*-BoldItalic,
-	Kerning=On, Contextuals={Alternate}, Ligatures={Common, Rare}, Numbers={Proportional, OldStyle}, StylisticSet={4},  % SS4 replaces capital Eszett with double S
+\newfontfamily\scfont[
+	Path=fonts/,
+	Extension=.otf,
+	UprightFont=*-Regular,
+	ItalicFont=*-Italic,
+	BoldFont=*-Bold,
+	BoldItalicFont=*-BoldItalic,
+	%
+	Kerning=On,
+	Contextuals={Alternate},
+	Ligatures={Common,
+	Rare},
+	Numbers={Proportional,
+	OldStyle},
+	StylisticSet={4},  % SS4 replaces capital Eszett with double S
+	%
 	Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
 ]{LibertinusSerif}
 
 % Source Sans Pro as sans serif font (package fontspec)
-\setsansfont[Path=fonts/, Extension=.ttf,
-	UprightFont=*-regular, ItalicFont=*-italic, BoldFont=*-700, BoldItalicFont=*-700italic,
-	Kerning=On, Ligatures={Common}, Diacritics={MarkToBase, MarkToMark},
+\setsansfont[
+	Path=fonts/,
+	Extension=.ttf,
+	UprightFont=*-regular,
+	ItalicFont=*-italic,
+	BoldFont=*-700,
+	BoldItalicFont=*-700italic,
+	%
+	Kerning=On,
+	Ligatures={Common},
+	Diacritics={MarkToBase, MarkToMark},
+	%
 	Scale=MatchLowercase
 ]{source-sans-pro-v13-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic}
 
 % Consolas as monospace font (package fontspec)
-\setmonofont[Path=fonts/, Extension=.ttf,
-	UprightFont=*, ItalicFont=*i, BoldFont=*b, BoldItalicFont=*z,
+\setmonofont[
+	Path=fonts/,
+	Extension=.ttf,
+	UprightFont=*,
+	ItalicFont=*i,
+	BoldFont=*b,
+	BoldItalicFont=*z,
+	%
 	Contextuals={Alternate},
 	Scale=MatchLowercase
 ]{consola}
@@ -310,7 +369,6 @@
 \newcommand{\asc}[1]{{\scfont #1}}
 
 
-
 %%%%%%%%%%fig
 % TABLE AND FIGURE COMMANDS
 
@@ -323,5 +381,7 @@
 	% \addfontfeatures{Numbers={Monospaced, Lining}}
 
 	% Enable lining and tabular figures for S columns (not necessary if global sisetup includes this setting) (package siunitx, fontspec)
-	\sisetup{ text-rm={ \addfontfeatures{Numbers={Monospaced, Lining}} } }
+	\sisetup{
+		text-rm={ \addfontfeatures{Numbers={Monospaced, Lining}} }
+	}
 }
