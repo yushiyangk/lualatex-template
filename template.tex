@@ -51,27 +51,37 @@
 	\MakeOuterQuote{"}  % Automatically replace " with smart quotes
 
 %%% Block-level texts
+\usepackage{titling}  % Enable document title layout adjustments
+	\thanksmarkseries{alph} \continuousmarks  % Subsequent footnotes after title continues the alphabet
+\usepackage{authblk}  % Provide author affiliations formatting
+	\renewcommand\Authands{, }  % Do not add "and" between final two author names, when there are more than two authors
+	\let\oldthanks\thanks \renewcommand\thanks[1]{\begingroup\let\rlap\relax\oldthanks{#1}\endgroup} % Fix stupid rlap of footnote marks in authors list
 %% Optional
-% \usepackage{titling}  % Enable document title layout adjustments
 % \usepackage{titlesec}  % Enable section heading layout adjustments
 \usepackage{enumitem}  % Enable list layout adjustments
 
 %%% Mathematics
 \usepackage[tbtags]{mathtools}  % Superset of amsmath; provide various equation environments, complex maths formatting and misc maths macros (tbtags places equation numbers at the top or bottom for a split equation)
 \usepackage{amssymb}  % Provide additional maths symbols
-\usepackage{siunitx}  % Provide formatted numerals and unit symbols, and S table columns for aligning numerals of varying digit lengths
+\usepackage{siunitx}[=v2]  % Provide formatted numerals and unit symbols, and S table columns for aligning numerals of varying digit lengths
+	\sisetup{
+		binary-units=true, per-mode=symbol, sticky-per=true, group-digits=false, separate-uncertainty=true,
+		detect-all,  % Font features
+		table-number-alignment=center, text-rm={\addfontfeatures{Numbers={Lining}}},
+	}
 \usepackage{mleftright}  % Remove spaces around brackets that use \left and \right
 	\mleftright  % Remove spaces around all brackets that use \left and \right (package mleftright)
 %% Optional
 \usepackage{xfrac}  % Provide diagonal split-level fractions using \sfrac
 
 %%% Tables and figures
-\usepackage{float}  % Enable float layout adjustments and custom floats, and provide the strong place-here flag [H]
+\usepackage{float}  % Enable float layout adjustments and custom floats (consider using newfloat intead), and provide the strong place-here flag [H]
 \usepackage{caption}  % Enable caption layout adjustments
 \usepackage{placeins}  % Provide float placement boundaries using \FloatBarrier
 \usepackage{booktabs}  % Provide well-formatted tables
 \usepackage{multirow}  % Provide multirow cells in tabular environments
 %% Optional
+% \usepackage{tcolorbox}  % Provide highlighted boxes
 % \usepackage{rotfloat}  % Provide rotated floats
 % \usepackage{wrapfig}  % Provide tables and figures that are wrapped around by text
 % \usepackage{subcaption}  % Provide subfigures and subtables, with subcaptions
@@ -82,6 +92,7 @@
 		hidelinks, citecolor=green, filecolor=cyan, linkcolor=blue, menucolor=blue, urlcolor=cyan, citebordercolor=green, filebordercolor=cyan, linkbordercolor=blue, menubordercolor=blue, urlbordercolor=cyan, bookmarksnumbered, bookmarksopen, CJKbookmarks,
 	}
 \usepackage{bookmark}  % Enable output adjustments for bookmarks produced by hyperref
+\usepackage{accsupp}  % Accessibility support; allows modifying selectable text (load after hyperref)
 %% Optional
 \usepackage{glossaries}  % Provide automatically formatted acronyms and index and glossary sections (load after hyperref)
 	% \setacronymstyle{long-short}
@@ -94,6 +105,8 @@
 	% \renewbibmacro{in:}{}  % Remove the "in:" label from citations of a part of a larger work
 	% \DefineBibliographyStrings{english}{ urlseen={accessed}	}  % "URL: <url> (accessed <date>)" for any English variant
 % \usepackage{biblatex-chicago}
+\usepackage{embedfile}  % Enable embedding files in the PDF output
+% \usepackage{hypgotoe}  % Provide hyperlinks to embedded PDFs in the PDF output
 
 %%% Unicode mathematics
 \usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}  % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
@@ -120,15 +133,25 @@
 % 	}
 
 %%% Electronics
-% \usepackage[siunitx,straightvoltages]{circuitikz}  % Provide circuit diagrams
+% \usepackage[siunitx, straightvoltages]{circuitikz}  % Provide circuit diagrams
+% 	\ctikzsetstyle{yushiyang}
 
 %%% Chemistry
 % \usepackage{mhchem}  % Provide chemical formulae and equations
 
 %%% Software
-% \usepackage{minted}  % Provide source code environment with syntax highlighting (requires compiling with the -shell-escape option BEFORE the input file, and requires Python package Pygments; pip install Pygments)
+% \usepackage[newfloat]{minted}  % Provide source code environment with syntax highlighting (requires compiling with the -shell-escape option BEFORE the input file, and requires Python package Pygments; pip install Pygments)
+% % \usepackage[newfloat, frozencache, cachedir=minted-frozencache]{minted}  % Provide source code environment with syntax highlighting (requires compiling with the -shell-escape option BEFORE the input file, and requires Python package Pygments; pip install Pygments)
 % 	\setminted{obeytabs, tabsize=4, breaklines, breakindentnchars=2, breaksymbolindentleftnchars=0, breaksymbolsepleftnchars=1, linenos, autogobble}
-% 	\renewcommand\theFancyVerbLine{\texttt{\small \color{LightGrey} \arabic{FancyVerbLine}}}  % Format line numbers as monospace and grey
+% 	\setminted{xleftmargin=\leftmargini, xrightmargin=\leftmargini}  % Match list indentation
+% 	\renewcommand\theFancyVerbLine{\BeginAccSupp{ActualText={aa}}\texttt{\small \color{LightGrey} \arabic{FancyVerbLine}}\EndAccSupp{}}  % Format line numbers as monospace and grey
+% 	% \captionsetup[listing]{position=top}  % Change listing floats introduced by minted to have spacing for captions above instead of below
+% 	\usemintedstyle{vs}
+
+
+%%% Management
+% \usepackage{pgfgantt}  % Provide Gantt charts
+% 	\ganttset{time slot format=isodate, vgrid}
 
 
 %%%%%%%%%%def
@@ -142,6 +165,7 @@
 % - Sideways figure; title not on same page, PDF output not rotated (with package rotating; uncertain after upgrade to rotfloat)
 % - Lining tabular figures in tables for non-S columns; current solution awfully slow (disabled)
 % - Includes for tables (from csv) and tikz
+% - Author \thanks footnote marks should have rlap reinstated when it is at the end of a line (or when using \and)
 
 
 %%%%%%%%%%sec
@@ -184,8 +208,19 @@
 	Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
 ]{LibertinusSerif}
 
-% Locally installed Consolas as monospace font (package fontspec)
-\setmonofont[Scale=MatchLowercase]{Consolas}
+% Source Sans Pro as sans serif font (package fontspec)
+\setsansfont[Path=fonts/, Extension=.ttf,
+	UprightFont=*-regular, ItalicFont=*-italic, BoldFont=*-700, BoldItalicFont=*-700italic,
+	Kerning=On, Ligatures={Common}, Diacritics={MarkToBase, MarkToMark},
+	Scale=MatchLowercase
+]{source-sans-pro-v13-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic}
+
+% Consolas as monospace font (package fontspec)
+\setmonofont[Path=fonts/, Extension=.ttf,
+	UprightFont=*, ItalicFont=*i, BoldFont=*b, BoldItalicFont=*z,
+	Contextuals={Alternate},
+	Scale=MatchLowercase
+]{consola}
 
 % Latin Modern Math as maths text font (package fontspec)
 \setmathrm[Path=fonts/, Extension=.otf]{latinmodern-math}
@@ -240,13 +275,6 @@
 % Custom text formatting commands
 \newcommand{\an}[1]{{\addfontfeatures{Numbers={Lining}}#1}}  % Sequences of lining alphanumeric characters (smallcaps not implemented)
 \newcommand{\asc}[1]{{\scfont #1}}  % Larger smallcaps in Libertinus for acronyms or alphanumeric sequences with uppercase and oldstyle numerals (visually imperfect workaround)
-
-% Configure package siunitx (package fontspec)
-\sisetup{
-	binary-units=true, per-mode=symbol, sticky-per=true, group-digits=false, separate-uncertainty=true,
-	detect-all,  % Font features
-	table-number-alignment=center, text-rm={\addfontfeatures{Numbers={Lining}}},
-}
 
 
 %%%%%%%%%%fig
@@ -309,9 +337,15 @@
 % Custom maths operators (similar to nabla, sin, etc.)
 \DeclareMathOperator{\E}{E}
 
+% Colours (package xcolor)
+\definecolor{keyword}{HTML}{0000ff}
+\definecolor{type}{HTML}{2b91af}
+\definecolor{comment}{HTML}{008000}
+
 % Acronyms (package glossaries)
-\newacronym{pdf}{\asc{PDF}}{probability density function}
-\newacronym{cdf}{\asc{CDF}}{cumulative density function}
+% \newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
+% \newacronym{gui}{\asc{GUI}}{graphical user interface} \glsunset{gui}
+% \newacronym{gui}{\asc{PDF}}{probability density function}
 
 
 %%%%%%%%%%doc
