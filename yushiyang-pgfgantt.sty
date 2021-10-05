@@ -6,9 +6,10 @@
 \usetikzlibrary{babel}
 
 % Externalise TikZ graphics to reduce recompilation (see TikZ manual)
-% Requires --shell-escape option
-\usetikzlibrary{external}
-\tikzexternalize
-\tikzsetexternalprefix{tikz/}
+% Do not enable because it fails in very stupid ways, and transplants main document error messages into the log of a figure
+% Requires --shell-escape option when enabled
+%\usetikzlibrary{external}
+%\tikzexternalize
+%\tikzsetexternalprefix{tikz/}
 
 \ganttset{time slot format=isodate, vgrid}
