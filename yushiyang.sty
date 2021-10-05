@@ -63,9 +63,6 @@
 % Support multicolumn layout
 \usepackage{multicol}
 
-% Enable inclusion of entire PDF pages
-\usepackage{pdfpages}
-
 
 %%%%%%%%%%typo
 % TYPOGRAPHY PACKAGES
@@ -274,11 +271,9 @@
 	BoldItalicFont=*-BoldItalic,
 	%
 	Kerning=On,
-	Contextuals={Alternate},
-	Ligatures={Common,
-	Rare},
-	Numbers={Proportional,
-	OldStyle},
+	Ligatures={Common, Rare},
+	% Numbers={Proportional, OldStyle},
+	Numbers={Proportional, Lining},
 	StylisticSet={4},  % SS4 replaces capital Eszett with double S
 	%
 	Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10

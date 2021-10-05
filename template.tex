@@ -21,6 +21,7 @@
 % Page layout
 % \usepackage{lua-visual-debug}  % Activate this package to draw boxes and rules in output for debugging
 % \usepackage{parskip}  % Activate this package to draw spacing between paragraphs and remove indentation
+% \usepackage{pdfpages} % Enable inclusion of entire PDF pages
 
 %% Tables and figures
 % \usepackage{rotfloat}  % Provide rotated floats
@@ -51,6 +52,7 @@
 
 %% Software
 % \usepackage{yushiyang-minted} % Provide source code environment with syntax highlighting (requires --shell-escape option, and requires Python package Pygments; pip install Pygments)
+% \usepackage[os=win]{menukeys}  % Provide formatted menu sequences and key strokes
 
 %% Management
 % \usepackage{yushiyang-pgfgantt}  % Provide Gantt charts
@@ -89,6 +91,9 @@
 % % Use uncertainties in parentheses instead of with plus-minus (package siunitx)
 % \sisetup{ separate-uncertainty=false }
 
+% Circled text (package tikz)
+% \newcommand*\circled[1]{\tikzifexternalizing{}{\tikzexternaldisable}\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1.2pt] (char) {#1};}\tikzifexternalizing{}{\tikzexternaldisable}}
+
 
 %%%%%%%%%%pre
 % PREAMBLE (document-specific definitions)
@@ -116,7 +121,7 @@
 %% Acronyms (package glossaries)
 % \newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
 % \newacronym{gui}{\asc{GUI}}{graphical user interface} \glsunset{gui}
-% \newacronym{gui}{\asc{PDF}}{probability density function}
+% \newacronym{cdf}{\asc{CDF}}{cumulative density function}
 
 
 %%%%%%%%%%doc
