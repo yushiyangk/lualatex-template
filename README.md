@@ -22,17 +22,16 @@ To compile, first run
 to generate some auxiliary files.
 
 Thereafter, if the `.bib` file has been modified, recompile with
-<pre><code>biber <var>template</var></code>
-<code>lualatex <var>template.tex</var></code>
-</pre>
+<pre><code>biber <var>template</var>
+lualatex <var>template.tex</var></code></pre>
 where <code><var>template</var></code> is the name of the LaTeX input file. Note that that the `biber` input **cannot** be specified with a file extension, as biber actually uses several auxiliary files with different file extensions that were generated from the original input file. If this was specified as `template.tex`, `biber` would look for a file called `template.tex.bcf` instead of `template.bdf` as it should.
 
 If the `.bib` file has not been modified and only the text contents have been modified, recompile with just
 <pre><code>lualatex <var>template.tex</var></code></pre>
 
-#### biblatex, bibtex and biber
+#### `biblatex`, bibtex and biber
 
-<code><b>biblatex</b></code> is the name of a LaTeX package that enables bibliography handling. <code><b>bibtex</b></code> and <code><b>biber</b></code> are two different commandline bibfile processors. In order for the package `biblatex` to work, it depends on an external bibfile processor, which can be either `bibtex` or `biber`. Here, `biber` is chosen because it supports Unicode, whereas `bibtex` does not.
+<code><b>biblatex</b></code> is the name of a LaTeX package that enables bibliography handling. <b>bibtex</b> and <b>biber</b> are two different commandline bibfile processors. In order for the package `biblatex` to work, it depends on an external bibfile processor, which can be either bibtex or biber. Here, biber is chosen because it supports Unicode, whereas bibtex does not.
 
 ### LuaLaTeX
 
@@ -45,8 +44,7 @@ A similar output engine is XeTeX (and the analogous XeLaTeX), which also support
 
 ## Word count
 
-<pre><code>texcount -inc [-incbib] -sum -sub [-html] [-v3] <var>base_tex_file</var>
-</code></pre>
+<pre><code>texcount -inc [-incbib] -sum -sub [-html] [-v3] <var>base_tex_file</var></code></pre>
 - `-inc` also counts files included using `\input{}`
 - `-incbib` to also count bibliography
 - `-sub` ≡ `-subcount` enables subcounts for subsections and higher
@@ -57,13 +55,11 @@ A similar output engine is XeTeX (and the analogous XeLaTeX), which also support
 <strong>DO NOT</strong> use `-merge` as it modifies the input file.
 
 To not show subcounts,
-<pre><code>texcount -inc [-incbib] -sum <s>-sub</s> <b>-nosub</b> [-html] [-v3] <var>base_tex_file</var>
-</code></pre>
+<pre><code>texcount -inc [-incbib] -sum <s>-sub</s> <b>-nosub</b> [-html] [-v3] <var>base_tex_file</var></code></pre>
 - `-nosub` disables subcounts
 
 To show only total of all files (including included files),
-<pre><code>texcount -inc [-incbib] -sum <s>-sub</s> <b>-total</b> [-html] [-v3] <var>base_tex_file</var>
-</code></pre>
+<pre><code>texcount -inc [-incbib] -sum <s>-sub</s> <b>-total</b> [-html] [-v3] <var>base_tex_file</var></code></pre>
 - `-total` removes the per-file counts
 
 ### Sum configuration

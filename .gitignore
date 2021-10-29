@@ -1,0 +1,6 @@
+syntax: glob
+*.aux
+*.log
+*.pdf
+*.synctex
+*.synctex.gz
