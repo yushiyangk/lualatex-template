@@ -24,7 +24,7 @@ to generate some auxiliary files.
 Thereafter, if the `.bib` file has been modified, recompile with
 <pre><code>biber <var>template</var>
 lualatex <var>template.tex</var></code></pre>
-where <code><var>template</var></code> is the name of the LaTeX input file. Note that that the `biber` input **cannot** be specified with a file extension, as biber actually uses several auxiliary files with different file extensions that were generated from the original input file. If this was specified as `template.tex`, `biber` would look for a file called `template.tex.bcf` instead of `template.bdf` as it should.
+where <code><var>template</var></code> is the name of the LaTeX input file. Note that that the biber input **cannot** be specified with a file extension, as biber actually uses several auxiliary files with different file extensions that were generated from the original input file. If this was specified as `template.tex`, biber would look for a file called `template.tex.bcf` instead of `template.bdf` as it should.
 
 If the `.bib` file has not been modified and only the text contents have been modified, recompile with just
 <pre><code>lualatex <var>template.tex</var></code></pre>
@@ -35,7 +35,7 @@ If the `.bib` file has not been modified and only the text contents have been mo
 
 ### LuaLaTeX
 
-**LuaTeX** is an output engine for Donald Knuth's original TeX software, that natively supports Unicde (UTF-8) input and natively produces PDF output. It can be seen as a more modern version of pdfTeX (which also produces PDF output, but did not support Unicode), whereas the original TeX software could only produce Postscript output (and did not support Unicode).
+**LuaTeX** is an output engine for Donald Knuth's original TeX software, that natively supports Unicode (UTF-8) input and natively produces PDF output. It can be seen as a more modern version of pdfTeX (which also produces PDF output, but did not support Unicode), whereas the original TeX software could only produce Postscript output (and did not support Unicode).
 
 LuaTeX should not be confused with LaTeX; LaTeX is an extension of the original TeX that provides many built-in commands/macros that make it much more usable than plain TeX. **LuaLaTeX** is a software package that provides the LaTeX extensions while using LuaTeX to produce its final PDF output.
 
