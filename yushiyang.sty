@@ -331,12 +331,15 @@
 \mathitalicsmode=1
 
 
-%%%%%%%%%%math
+%%%%%%%%%%mc
 % MATHEMATICS COMMANDS
 
 % Given relations
 \newcommand{\given}{{\mathchoice{\:}{\:}{}{}\ifnum\currentgrouptype=16 \middle\fi\vert\mathchoice{\:}{\:}{}{}}}
 % \ifnum\currentgrouptype=16 \middle\fi - If currently between delimiters that are automatically sized by \left and \right, use automatic sizing with \middle
+
+% Matrix transpose operator
+\newcommand{\T}{^\mathsf{\mkern-1.5muT}}
 
 % % Make maths environments in section headings bold (mostly does not work)
 % \makeatletter
@@ -351,7 +354,7 @@
 }
 
 
-%%%%%%%%%%type
+%%%%%%%%%%tc
 % TYPOGRAPHY COMMANDS
 
 % Custom text formatting commands
@@ -363,7 +366,7 @@
 \newcommand{\asc}[1]{{\scfont #1}}
 
 
-%%%%%%%%%%fig
+%%%%%%%%%%fc
 % TABLE AND FIGURE COMMANDS
 
 % Custom command to centre text in an otherwise-aligned column

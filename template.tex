@@ -21,7 +21,9 @@
 % Page layout
 % \usepackage{lua-visual-debug}  % Activate this package to draw boxes and rules in output for debugging
 % \usepackage{parskip}  % Activate this package to draw spacing between paragraphs and remove indentation
+% \usepackage{changepage}  % Enable margin adjustments and the adjustwidth envrionment
 % \usepackage{pdfpages} % Enable inclusion of entire PDF pages
+% \usepackage[bottom]{footmisc}  % Force footnotes to very bottom of pages, and below bottom floats (enable this if disabling /flushbottom)
 
 %% Tables and figures
 % \usepackage{rotfloat}  % Provide rotated floats
@@ -74,24 +76,33 @@
 %%%%%%%%%%conf
 % DOCUMENT CONFIGURATION
 
-% Show section numbering up to a certain depth only
+%% Page layout (package geometry)
+\geometry{margin=1in}
+
+%% Make bottom of all pages flush (enable package footmisc with option bottom if disabling this, which works better with the default \raggedbottom)
+\flushbottom
+
+%% Show section numbering up to a certain depth only
 % \setcounter{secnumdepth}{1}
 
-% % Keep floats within their sections (package placeins)
+%% Keep floats within their sections (package placeins)
 % \let\Oldsection\section \renewcommand{\section}{\FloatBarrier\Oldsection}
 % \let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
 % \let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
 
-% Reduce captions font size (package caption)
+%% List spacing (package enumitem)
+\setlist{noitemsep}
+
+%% Reduce captions font size (package caption)
 % \captionsetup{font=small}
 
-% Modify equation numbering format
+%% Modify equation numbering format
 % \renewcommand{\theequation}{\asc{L}\arabic{equation}}
 
-% % Use uncertainties in parentheses instead of with plus-minus (package siunitx)
+%% % Use uncertainties in parentheses instead of with plus-minus (package siunitx)
 % \sisetup{ separate-uncertainty=false }
 
-% Circled text (package tikz)
+%% Circled text (package tikz)
 % \newcommand*\circled[1]{\tikzifexternalizing{}{\tikzexternaldisable}\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1.2pt] (char) {#1};}\tikzifexternalizing{}{\tikzexternaldisable}}
 
 
@@ -100,9 +111,6 @@
 
 %% Bibliography file (package biblatex)
 % \addbibresource{document.bib}
-
-%% Page layout (package geometry)
-\geometry{margin=1in}
 
 %% Custom maths constants and other macros
 \renewcommand{\d}{d}  % should be \mathit{d} but font not working
