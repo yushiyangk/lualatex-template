@@ -73,6 +73,27 @@
 % \bookmarksetup{draft=true}
 
 
+%%%%%%%%%%wc
+% WORD COUNT CONFIGURATION
+
+% TeXcount instructions start with %TC:
+% To disable, insert a space between % and TC, as in % TC:
+
+%% Do not count document title
+%TC:macro \title [ignore]
+
+%% Treat maths environments from package amsmath like other maths environments
+%TC:envir gather [] displaymath
+
+%% Count code blocks as display math
+%TC:envir minted [ignore] displaymath
+%TC:macro \mint [ignore,displaymath]
+%TC:macro \mintinline [ignore,inlinemath]
+
+%TC:macro \textcolor [ignore,text]
+%TC:macro \newgeometry [ignore]
+
+
 %%%%%%%%%%conf
 % DOCUMENT CONFIGURATION
 
@@ -134,7 +155,10 @@
 \newcommand{\cpi}{\pi}
 
 %% Custom maths operators (similar to nabla, sin, etc.)
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\pdf}{\symit{p}}
 
 %% Acronyms (package glossaries)
 % \newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
