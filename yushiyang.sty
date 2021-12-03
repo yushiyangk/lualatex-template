@@ -123,7 +123,7 @@
 \usepackage{enumitem}
 
 
-%%%%%%%%%%m
+%%%%%%%%%%math
 % MATHEMATICS PACKAGES
 
 % Superset of amsmath
@@ -238,7 +238,7 @@
 % UNICODE MATHEMATICS
 
 % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
-\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}]{unicode-math}
+\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}, math-style=ISO, bold-style=upright]{unicode-math}
 	% warnings-off={...} disables warnings about redefined \overbracket, \underbracket, \dblcolon, \coloneqq, \Coloneqq, \eqqcolon due to package mathtools
 
 
@@ -315,6 +315,7 @@
 % Latin Modern Math as maths symbol font (package unicode-math)
 \setmathfont[Path=fonts/, Extension=.otf]{latinmodern-math}
 \AtBeginDocument{ \renewcommand{\setminus}{\mathbin{\textbackslash}} }  % Terrible workaround for missing \setminus in Latin Modern Math
+\setmathfont[range=\varnothing, Path=fonts/, Extension=.otf]{LibertinusMath-Regular}  % Use stroked circle for \emptyset and \varnothing
 
 % Latin Modern for bolded versions of maths symbol font (package fontspec)
 % % Workaround: https://tex.stackexchange.com/questions/248904/boldmath-with-unicode-math-and-fonts-with-a-math-table
@@ -332,11 +333,11 @@
 \mathitalicsmode=1
 
 
-%%%%%%%%%%math
+%%%%%%%%%%mc
 % MATHEMATICS COMMANDS
 
 % Given relations
-\newcommand{\given}{{\mathchoice{\:}{\:}{}{}\ifnum\currentgrouptype=16 \middle\fi\vert\mathchoice{\:}{\:}{}{}}}
+\newcommand{\given}{\mathchoice{\:}{\:}{}{}\ifnum\currentgrouptype=16 \middle\fi\vert\mathchoice{\:}{\:}{}{}}
 % \ifnum\currentgrouptype=16 \middle\fi - If currently between delimiters that are automatically sized by \left and \right, use automatic sizing with \middle
 
 % Matrix transpose operator
@@ -355,7 +356,7 @@
 }
 
 
-%%%%%%%%%%type
+%%%%%%%%%%tc
 % TYPOGRAPHY COMMANDS
 
 % Custom text formatting commands
@@ -367,7 +368,7 @@
 \newcommand{\asc}[1]{{\scfont #1}}
 
 
-%%%%%%%%%%fig
+%%%%%%%%%%fc
 % TABLE AND FIGURE COMMANDS
 
 % Custom command to centre text in an otherwise-aligned column
