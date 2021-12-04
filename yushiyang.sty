@@ -238,7 +238,10 @@
 % UNICODE MATHEMATICS
 
 % Support UTF-8 input and OpenType fonts for maths environments (load after amsmath and all packages that add maths symbols)
-\usepackage[warnings-off={mathtools-colon, mathtools-overbracket}, math-style=ISO, bold-style=upright]{unicode-math}
+\usepackage[warnings-off={mathtools-colon, mathtools-overbracket},
+	math-style=ISO, bold-style=upright,
+	mathrm=sym, mathit=sym, mathsf=sym, mathbf=sym, mathtt=sym
+]{unicode-math}
 	% warnings-off={...} disables warnings about redefined \overbracket, \underbracket, \dblcolon, \coloneqq, \Coloneqq, \eqqcolon due to package mathtools
 
 
@@ -309,13 +312,9 @@
 	Scale=MatchLowercase
 ]{consola}
 
-% Latin Modern Math as maths text font (package fontspec)
-\setmathrm[Path=fonts/, Extension=.otf]{latinmodern-math}
-
-% Latin Modern Math as maths symbol font (package unicode-math)
-\setmathfont[Path=fonts/, Extension=.otf]{latinmodern-math}
-\AtBeginDocument{ \renewcommand{\setminus}{\mathbin{\textbackslash}} }  % Terrible workaround for missing \setminus in Latin Modern Math
-\setmathfont[range=\varnothing, Path=fonts/, Extension=.otf]{LibertinusMath-Regular}  % Use stroked circle for \emptyset and \varnothing
+% New Computer Modern Math as maths symbol font (package unicode-math)
+\setmathfont[Path=fonts/, Extension=.otf]{NewCMMath-Regular}
+\setmathfont[range={\varnothing}, Path=fonts/, Extension=.otf]{LibertinusMath-Regular}  % Use stroked circle for \emptyset and \varnothing
 
 % Latin Modern for bolded versions of maths symbol font (package fontspec)
 % % Workaround: https://tex.stackexchange.com/questions/248904/boldmath-with-unicode-math-and-fonts-with-a-math-table
