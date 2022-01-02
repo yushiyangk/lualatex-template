@@ -120,8 +120,8 @@
 %% Fix footnotes appearing on the following page (only enable this if the issue is observed)
 %\usepackage{etoolbox}
 %\makeatletter
-%\patchcmd\end@float{\@cons\@currlist\@currbox}{\@cons\@currlist\@currbox\global\holdinginserts\@ne}{}{}
-%\apptocmd\@specialoutput{\global\holdinginserts\z@}
+%	\patchcmd\end@float{\@cons\@currlist\@currbox}{\@cons\@currlist\@currbox\global\holdinginserts\@ne}{}{}
+%	\apptocmd\@specialoutput{\global\holdinginserts\z@}
 %\makeatother
 
 %% Keep floats within their sections (package placeins)
@@ -129,11 +129,13 @@
 %\let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
 %\let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
 
-%% Modify section counters
-%\renewcommand\thesection{\alph{section}}
-
-%% Show section numbering up to a certain depth only
+%% Show sections in the table of contents up to a certain depth only
 %\setcounter{secnumdepth}{1}
+
+%% Modify section numbering format
+%\renewcommand{\thesection}{\asc{\arabic{section}}}
+%\renewcommand{\thesubsection}{\asc{\arabic{section}(\alph{subsection})}}
+%\renewcommand{\thesubsubsection}{\asc{\arabic{section}(\alph{subsection})(\roman{subsubsection})}}
 
 %% Modify equation numbering format
 %\renewcommand{\theequation}{\asc{L}\arabic{equation}}
@@ -170,15 +172,17 @@
 \newcommand{\cpi}{\pi}
 
 %% Custom maths operators (similar to nabla, sin, etc.)
-\DeclareMathOperator*{\argmin}{argmin}
-\DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator{\pdf}{\symit{p}}
+%% DeclareMathOperator* places subscripts underneath
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
 
 %% Acronyms (package glossaries)
-% \newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
-% \newacronym{gui}{\asc{GUI}}{graphical user interface} \glsunset{gui}
-% \newacronym{cdf}{\asc{CDF}}{cumulative density function}
+%\newacronym{cdf}{\asc{CDF}}{cumulative density function}
+%\newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
+%\newacronym{gui}{\asc{GUI}}{graphical user interface} \glsunset{gui}
+%\newacronym{2d}{\asc{2D}}{2-dimensional} \glsunset{2d}
 
 
 %%%%%%%%%%doc
