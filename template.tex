@@ -9,7 +9,9 @@
 % Navigate to a section quickly by searching for the %-tag
 % - Optional packages (%opt)
 % - Specialised packages (%sp)
+% - Word count configuration (%wc)
 % - Drafting annotations (%dra)
+% - Squeeze (%sq)
 % - Document configuration (%conf)
 % - Preamble, document-specific definitions (%pre)
 % - Document (%doc)
@@ -60,19 +62,6 @@
 % \usepackage{yushiyang-pgfgantt}  % Provide Gantt charts
 
 
-%%%%%%%%%%dra
-% DRAFTING ANNOTATIONS (enable during drafting only)
-
-% % Show text block, header, footer and sidebar boundaries and crop marks (package geometry)
-% \geometry{showframe, showcrop}
-
-% % Colour hyperlinks (package hyperref)
-% \hypersetup{colorlinks}
-
-% % Disable bookmark generation for quicker builds (package bookmark)
-% \bookmarksetup{draft=true}
-
-
 %%%%%%%%%%wc
 % WORD COUNT CONFIGURATION
 
@@ -92,6 +81,31 @@
 
 %TC:macro \textcolor [ignore,text]
 %TC:macro \newgeometry [ignore]
+
+
+%%%%%%%%%%dra
+% DRAFTING ANNOTATIONS (enable during drafting only)
+
+% % Show text block, header, footer and sidebar boundaries and crop marks (package geometry)
+% \geometry{showframe, showcrop}
+
+% % Colour hyperlinks (package hyperref)
+% \hypersetup{colorlinks}
+
+% % Disable bookmark generation for quicker builds (package bookmark)
+% \bookmarksetup{draft=true}
+
+
+%%%%%%%%%%sq
+% SQUEEZE
+
+%% Caption spacing (package caption)
+%\captionsetup{aboveskip=0pt}
+%\captionsetup[table]{belowskip=0.5ex}
+
+%% Section title spacing (package titlesec)
+%\titlespacing*{\section}{0pt}{2ex plus 1.6ex minus 0.6ex}{1ex plus 0.8ex minus 0.2ex}
+%\titlespacing*{\subsection}{0pt}{1.6ex plus 1.2ex minus 0.4ex}{1ex plus 0.8ex minus 0.2ex}
 
 
 %%%%%%%%%%conf
