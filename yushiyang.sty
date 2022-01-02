@@ -137,6 +137,7 @@
 	\DeclarePairedDelimiter{\bracks}{[}{]}
 	\DeclarePairedDelimiter{\braces}{\{}{\}}
 	\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+	\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 
 % Provide additional maths symbols
 \usepackage{amssymb}
@@ -175,6 +176,9 @@
 
 % Provide well-formatted tables
 \usepackage{booktabs}
+
+% Provide table cells with minimum vertical padding (use column prefix C because package siunitx is loaded)
+\usepackage[column=C]{cellspace}
 
 % Provide multirow cells in tabular environments
 \usepackage{multirow}
@@ -340,7 +344,7 @@
 % \ifnum\currentgrouptype=16 \middle\fi - If currently between delimiters that are automatically sized by \left and \right, use automatic sizing with \middle
 
 % Matrix transpose operator
-\newcommand{\T}{^\mathsf{\mkern-1.5muT}}
+\newcommand{\T}{\mathsfup{\mkern-1.5muT}}
 
 % % Make maths environments in section headings bold (mostly does not work)
 % \makeatletter
