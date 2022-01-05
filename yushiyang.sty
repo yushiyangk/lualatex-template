@@ -190,21 +190,28 @@
 
 % Automatic hyperlinks in PDF output
 \usepackage{hyperref}
+	% Define colours using xcolor (http://tug.ctan.org/graphics/mfpic/metapost/dvipsnam.mp)
+	\definecolor{hyperrefBlue}{cmyk}{0.94, 0.54, 0, 0}  % dvips NavyBlue
+	\definecolor{hyperrefMagenta}{cmyk}{0.34, 0.90, 0, 0.02}  % dvips Mulberry
+	\definecolor{hyperrefRed}{cmyk}{0, 0.89, 0.94, 0.28}  % dvips BrickRed
 	\hypersetup{
 		unicode,
 		psdextra,
 		%
-		hidelinks,
-		citecolor=green,
-		filecolor=cyan,
-		linkcolor=blue,
-		menucolor=blue,
-		urlcolor=cyan,
+		colorlinks=true,
+		citecolor=hyperrefBlue,
+		linkcolor=hyperrefBlue,
+		urlcolor=hyperrefMagenta,
+		filecolor=hyperrefRed,
+		menucolor=hyperrefRed,
+		runcolor=hyperrefRed,
+		%
 		citebordercolor=green,
-		filebordercolor=cyan,
 		linkbordercolor=blue,
-		menubordercolor=blue,
-		urlbordercolor=cyan,
+		urlbordercolor=magenta,
+		filebordercolor=red,
+		menubordercolor=cyan,
+		runbordercolor=orange,
 		%
 		bookmarksnumbered,
 		bookmarksopen,
