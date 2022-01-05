@@ -132,10 +132,24 @@
 %% Show sections in the table of contents up to a certain depth only
 %\setcounter{secnumdepth}{1}
 
+%% Change depth of appendices in table of contents and PDF bookmarks (requires dissociating PDF bookmark depth above)
+%\hypersetup{bookmarksdepth=subsubsection}  % Dissociate PDF bookmark depth from table of contents depth in preamble (required if changing tocdepth mid-document)
+%\appto\appendix{
+%	\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}  % Change tocdepth in the middle of the table of contents
+%	\hypersetup{bookmarksdepth=1}
+%}
+
 %% Modify section numbering format
 %\renewcommand{\thesection}{\arabic{section}}
 %\renewcommand{\thesubsection}{\arabic{section}(\alph{subsection})}
 %\renewcommand{\thesubsubsection}{\arabic{section}(\alph{subsection})(\roman{subsubsection})}
+
+%% Modify appendix numbering format (use smallcaps)
+\appto\appendix{
+	\renewcommand{\thesection}{\asc{\Alph{section}}}
+	\renewcommand{\thesubsection}{\asc{\Alph{section}}.\arabic{subsection}}
+	\renewcommand{\thesubsubsection}{\asc{\Alph{section}}.\arabic{subsection}.\arabic{subsubsection}}
+}
 
 %% Modify equation numbering format
 %\renewcommand{\theequation}{\asc{L}\arabic{equation}}
@@ -146,9 +160,6 @@
 %% Reduce captions font size or modify caption margins (package caption)
 %\captionsetup{font=small}
 %\captionsetup{margin=\parindent}
-
-%% Dissociate PDF bookmark depth from table of contents depth (package hyperref; required if changing tocdepth mid-document using \addtocontents{toc}{\protect\setcounter{tocdepth}{1}})
-%\hypersetup{bookmarksdepth=subsubsection}
 
 %% Use uncertainties in parentheses instead of with plus-minus (package siunitx)
 %\sisetup{ separate-uncertainty=false }
