@@ -25,9 +25,12 @@
 % - \sin or \exp in section headings causes error; hyperref cannot convert to bookmark label due to redefinition by unicode-math
 %   (reference, but does not resolve issue: https://tex.stackexchange.com/questions/69331/strange-error-when-unicode-math-and-hyperref-are-combined-in-xelatex )
 % - Libertinus smallcaps are too small; current workaround is visually imperfect (attempted and failed: automatically detect uppercase or lowercase using Lua, smaller font size with bold)
+% - Lowercase letters in \asc should be using the standard font instead of the workaround font
 % - Acronyms should be using smallcaps (attempted and failed: redefine /acronymfont to evoke Lua but /acronymfont takes unexpanded macros as its argument and breaks)
+% - Manually setting acronyms to \asc{...} does not allow setting appropriate capital form (for \Gls instead of \gls)
 % - sfrac has poor kerning for numerator
 % - Sideways figure; title not on same page, PDF output not rotated (with package rotating; uncertain after upgrade to rotfloat)
+% - \SI and \num should use text font always, even in maths mode
 % - Lining tabular figures in tables for non-S columns; current solution awfully slow (disabled)
 % - Includes for tables (from csv) and tikz
 % - Author \thanks footnote marks should have rlap reinstated when it is at the end of a line (or when using \and)
@@ -392,7 +395,7 @@
 % Custom text formatting commands
 
 % Sequences of lining alphanumeric characters (smallcaps not implemented)
-\newcommand{\an}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
+\DeclareRobustCommand{\an}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
 
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (visually imperfect workaround)
 \newcommand{\asc}[1]{\an{\scfont #1}}
