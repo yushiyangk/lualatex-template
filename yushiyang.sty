@@ -218,6 +218,26 @@
 		CJKbookmarks,
 	}
 
+	% Use lowercase for \autoref labels, and "section" for all levels of sections
+	% AtBeginDocument needed for some reason
+	\AtBeginDocument{
+		\renewcommand*{\figureautorefname}{figure}
+		\renewcommand*{\tableautorefname}{table}
+		\renewcommand*{\partautorefname}{part}
+		\renewcommand*{\appendixautorefname}{appendix}
+		\renewcommand*{\equationautorefname}{equation}
+		\renewcommand*{\Itemautorefname}{item}
+		\renewcommand*{\chapterautorefname}{chapter}
+		\renewcommand*{\sectionautorefname}{section}
+		\renewcommand*{\subsectionautorefname}{section}
+		\renewcommand*{\subsubsectionautorefname}{subsubsection}
+		\renewcommand*{\paragraphautorefname}{paragraph}
+		\renewcommand*{\Hfootnoteautorefname}{footnote}
+		\renewcommand*{\AMSautorefname}{equation}
+		\renewcommand*{\theoremautorefname}{theorem}
+		\renewcommand*{\pageautorefname}{page}
+	}
+
 	% Convert formatting commands to plain text in bookmark labels
 	\pdfstringdefDisableCommands{%
 		% Custom typography commands
