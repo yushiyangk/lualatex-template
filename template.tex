@@ -166,10 +166,13 @@
 \definecolor{comment}{HTML}{008000}
 
 %% Custom maths constants and other macros
-\renewcommand{\d}{d}  % should be \mathit{d} but font not working
-\newcommand{\e}{e}
-\renewcommand{\i}{\symrm{j}}
-\newcommand{\cpi}{\pi}
+\renewcommand*{\d}{\symit{d}}
+\newcommand*{\e}{e}
+%\renewcommand*{\i}{\symrm{j}}
+\newcommand*{\cpi}{\pi}
+\newcommand*{\R}{\symbb{R}}
+
+%\newcommand*{\xv}{\symbf{x}}
 
 %% Custom maths operators (similar to nabla, sin, etc.)
 \DeclareMathOperator{\sign}{sign}
