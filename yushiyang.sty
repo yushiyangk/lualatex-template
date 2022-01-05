@@ -382,8 +382,9 @@
 % \makeatother
 
 % Set the normal epsilon (ε) as default, instead of the lunate epsilon (ϵ) (package unicode-math)
-% AtBeginDocument is necessary as unicode-math redefines \epsilon and \varepsilon etc. right before \begin{document}, which may be a bug
-\AtBeginDocument{
+% AfterEndPreamble is necessary as unicode-math redefines \epsilon and \varepsilon etc. right before \begin{document}, which may be a bug
+% AfterEndPreamble executes after AtBeginDocument, which was not late enough
+\AfterEndPreamble{
 	\renewcommand{\epsilon}{ε}
 	\renewcommand{\varepsilon}{ϵ}
 }
