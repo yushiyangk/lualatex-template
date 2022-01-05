@@ -33,7 +33,7 @@
 %\usepackage{tcolorbox}  % Provide highlighted boxes
 
 %% Sections and linking
-%\usepackage{appendix}  % Enable appendix layout adjustments and provide subappendices
+%\usepackage{appendix}  % Enable appendix layout adjustments and provide section or part-specific appendices with the subappendices environment
 %\usepackage{embedfile}  % Support embedding files in the PDF output
 %\usepackage{hypgotoe}  % Provide hyperlinks to embedded PDFs in the PDF output
 
@@ -133,9 +133,9 @@
 %\setcounter{secnumdepth}{1}
 
 %% Modify section numbering format
-%\renewcommand{\thesection}{\asc{\arabic{section}}}
-%\renewcommand{\thesubsection}{\asc{\arabic{section}(\alph{subsection})}}
-%\renewcommand{\thesubsubsection}{\asc{\arabic{section}(\alph{subsection})(\roman{subsubsection})}}
+%\renewcommand{\thesection}{\arabic{section}}
+%\renewcommand{\thesubsection}{\arabic{section}(\alph{subsection})}
+%\renewcommand{\thesubsubsection}{\arabic{section}(\alph{subsection})(\roman{subsubsection})}
 
 %% Modify equation numbering format
 %\renewcommand{\theequation}{\asc{L}\arabic{equation}}

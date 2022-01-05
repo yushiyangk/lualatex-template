@@ -394,11 +394,14 @@
 
 % Custom text formatting commands
 
-% Sequences of lining alphanumeric characters (smallcaps not implemented)
-\DeclareRobustCommand{\an}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
+% Lining numbers
+\newrobustcmd*{\lining}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
+
+% Sequences of alphanumeric characters (without smallcaps; Letters={Uppercase} switches on case-sensitive forms)
+\newrobustcmd*{\an}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
 
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (visually imperfect workaround)
-\newcommand{\asc}[1]{\an{\scfont #1}}
+\newcommand*{\asc}[1]{{\scfont \an{#1}}}
 
 
 %%%%%%%%%%fc
