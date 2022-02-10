@@ -8,3 +8,11 @@
 	\renewbibmacro{in:}{}  % Remove the "in:" label from citations of a part of a larger work
 	\DefineBibliographyStrings{english}{ urlseen={accessed}	}  % "URL: <url> (accessed <date>)" for any English variant
 % \usepackage{biblatex-chicago}
+
+	% Add footnote citations to fnpct to enable better kerning and commas between footnote marks
+	\AdaptNote{\autocite}{o o +m}[footnote]{%
+		\IfNoValueTF{#1}{#NOTE{#3}}{\IfNoValueTF{#2}{#NOTE[#1]{#3}}{#NOTE[#1][#2]{#3}}}%
+	}
+	\AdaptNote{\footcite}{o o +m}[footnote]{%
+		\IfNoValueTF{#1}{#NOTE{#3}}{\IfNoValueTF{#2}{#NOTE[#1]{#3}}{#NOTE[#1][#2]{#3}}}%
+	}

@@ -85,6 +85,10 @@
 % Enable relative font sizing
 \usepackage{relsize}
 
+% Improve kerning for footnote marks
+\usepackage{fnpct}
+	\setfnpct{reverse}  % reverse to not swap footnote marks and punctuation by default (swap using starred command footnote*)
+
 % Improvements to verbatim environments (not used directly, but used by package minted, load before csquotes)
 \usepackage{fvextra}
 
@@ -108,7 +112,7 @@
 % Enable document title layout adjustments
 \usepackage{titling}
 	\thanksmarkseries{alph}  % Use letters for footnote marks
-	\continuousmarks  % Subsequent footnotes after title section continues instead of resetting
+	%\continuousmarks  % Subsequent footnotes after title section continues instead of resetting
 
 % Provide author affiliations formatting
 \usepackage{authblk}
@@ -118,6 +122,9 @@
 	% Fix stupid rlap of footnote marks in authors list
 	\let\oldthanks\thanks
 	\renewcommand\thanks[1]{\begingroup\let\rlap\relax\oldthanks{#1}\endgroup}
+
+% Fixes for footnotes inside captions or headings
+\usepackage{ftnxtra}
 
 % Enable section heading layout adjustments
 \usepackage{titlesec}
