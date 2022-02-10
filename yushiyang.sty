@@ -8,6 +8,7 @@
 %   - Essential packages (%ess)
 %   - Page layout packages (%lay)
 %   - Typography packages (%typo)
+%   - Localisation packages (%loc)
 %   - Block-level text packages (%blk)
 %   - Mathematics packages (%math)
 %   - Tables and figures packages (%fig)
@@ -73,9 +74,6 @@
 % Support OpenType fonts for text environments (no-math prevents changes to \mathrm in maths environments)
 \usepackage[no-math]{fontspec}
 
-% Provide multilingual support
-\usepackage{babel}
-
 % Automatic micro-typographic adjustments, e.g. character protrusion and font expansion
 \usepackage{microtype}
 
@@ -92,11 +90,22 @@
 % Improvements to verbatim environments (not used directly, but used by package minted, load before csquotes)
 \usepackage{fvextra}
 
+
+%%%%%%%%%%loc
+% LOCALISATION PACKAGES
+
+% Provide multilingual support
+\usepackage{babel}
+
+% Enable custom date and time formatting (mainly for the automatic document date)
+\usepackage[useregional]{datetime2}
+	\DTMlangsetup*{ord=omit}  % Remove ordinals from dates (does not  apply to biblatex, which must be set separately)
+
 % Provide smart quotes (autopunct disables reordering of punctuation)
 \usepackage[strict=true]{csquotes}
 	\ExecuteQuoteOptions{autostyle=true, autopunct=false}
 
-	% Make double quotes outer quotes like normal people
+	% Make double quotes outer quotes like normal people (replace everything with "american")
 	% Silly rearrangements of punctuation with "american" should be disabled by autopunct=false
 	\DeclareQuoteAlias{american}{british}
 	\DeclareQuoteAlias{american}{australian}

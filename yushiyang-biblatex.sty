@@ -2,12 +2,67 @@
 
 % Provide automatically formatted citations and references sections
 % \usepackage{biblatex}
-\usepackage[citestyle=verbose-inote, bibstyle=numeric]{biblatex}
-	% language=australian to remove the stupid ordinals from dates; stupid thing doesn't work, must be set in documentclass
-	\ExecuteBibliographyOptions{autocite=footnote, sorting=none, autopunct=false, alldates=long, dateabbrev=false}
-	\renewbibmacro{in:}{}  % Remove the "in:" label from citations of a part of a larger work
-	\DefineBibliographyStrings{english}{ urlseen={accessed}	}  % "URL: <url> (accessed <date>)" for any English variant
 % \usepackage{biblatex-chicago}
+\usepackage[citestyle=verbose-inote, bibstyle=numeric]{biblatex}
+	\ExecuteBibliographyOptions{autocite=footnote, sorting=none, autopunct=false, alldates=long, dateabbrev=false}
+
+	% Remove the "in:" label from citations of a part of a larger work
+	\renewbibmacro{in:}{}
+
+	% "URL: <url> (accessed <date>)" for all English variants supported by biblatex
+	\DefineBibliographyStrings{american}{urlseen={accessed}}
+	\DefineBibliographyStrings{british}{urlseen={accessed}}
+	\DefineBibliographyStrings{canadian}{urlseen={accessed}}
+	\DefineBibliographyStrings{australian}{urlseen={accessed}}
+	\DefineBibliographyStrings{newzealand}{urlseen={accessed}}
+
+	% Remove stupid ordinals from dates for all English variants supported by biblatex; ridiculous that this is necessary
+	% Taken from biblatex's australian style (australian.lbx), via https://tex.stackexchange.com/a/366416/64398
+	\DefineBibliographyExtras{american}{%
+	\protected\def\mkbibdatelong#1#2#3{%
+		\iffieldundef{#3}{}{\stripzeros{\thefield{#3}}\iffieldundef{#2}{}{\nobreakspace}}%
+		\iffieldundef{#2}{}{\mkbibmonth{\thefield{#2}}\iffieldundef{#1}{}{\space}}%
+		\iffieldbibstring{#1}{\bibstring{\thefield{#1}}}{\stripzeros{\thefield{#1}}}%
+	}%
+	\protected\def\mkbibseasondateshort#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+	\protected\def\mkbibseasondatelong#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+}
+	\DefineBibliographyExtras{british}{%
+		\protected\def\mkbibdatelong#1#2#3{%
+			\iffieldundef{#3}{}{\stripzeros{\thefield{#3}}\iffieldundef{#2}{}{\nobreakspace}}%
+			\iffieldundef{#2}{}{\mkbibmonth{\thefield{#2}}\iffieldundef{#1}{}{\space}}%
+			\iffieldbibstring{#1}{\bibstring{\thefield{#1}}}{\stripzeros{\thefield{#1}}}%
+		}%
+		\protected\def\mkbibseasondateshort#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+		\protected\def\mkbibseasondatelong#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+	}
+	\DefineBibliographyExtras{canadian}{%
+		\protected\def\mkbibdatelong#1#2#3{%
+			\iffieldundef{#3}{}{\stripzeros{\thefield{#3}}\iffieldundef{#2}{}{\nobreakspace}}%
+			\iffieldundef{#2}{}{\mkbibmonth{\thefield{#2}}\iffieldundef{#1}{}{\space}}%
+			\iffieldbibstring{#1}{\bibstring{\thefield{#1}}}{\stripzeros{\thefield{#1}}}%
+		}%
+		\protected\def\mkbibseasondateshort#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+		\protected\def\mkbibseasondatelong#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+	}
+	\DefineBibliographyExtras{australian}{%
+		\protected\def\mkbibdatelong#1#2#3{%
+			\iffieldundef{#3}{}{\stripzeros{\thefield{#3}}\iffieldundef{#2}{}{\nobreakspace}}%
+			\iffieldundef{#2}{}{\mkbibmonth{\thefield{#2}}\iffieldundef{#1}{}{\space}}%
+			\iffieldbibstring{#1}{\bibstring{\thefield{#1}}}{\stripzeros{\thefield{#1}}}%
+		}%
+		\protected\def\mkbibseasondateshort#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+		\protected\def\mkbibseasondatelong#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+	}
+	\DefineBibliographyExtras{newzealand}{%
+		\protected\def\mkbibdatelong#1#2#3{%
+			\iffieldundef{#3}{}{\stripzeros{\thefield{#3}}\iffieldundef{#2}{}{\nobreakspace}}%
+			\iffieldundef{#2}{}{\mkbibmonth{\thefield{#2}}\iffieldundef{#1}{}{\space}}%
+			\iffieldbibstring{#1}{\bibstring{\thefield{#1}}}{\stripzeros{\thefield{#1}}}%
+		}%
+		\protected\def\mkbibseasondateshort#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+		\protected\def\mkbibseasondatelong#1#2{\mkbibseason{\thefield{#2}}\iffieldundef{#1}{}{\space}\mkyearzeros{\thefield{#1}}}%
+	}
 
 	% Add footnote citations to fnpct to enable better kerning and commas between footnote marks
 	\AdaptNote{\autocite}{o o +m}[footnote]{%
