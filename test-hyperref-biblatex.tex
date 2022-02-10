@@ -1,0 +1,241 @@
+\documentclass[11pt, a4paper, british]{article}
+
+% Intended to be compiled with LuaLaTeX; assumes UTF-8 support
+
+\usepackage{yushiyang}
+
+%%%%%%%%%%
+% CONTENTS
+% Navigate to a section quickly by searching for the %-tag
+% - Optional packages (%opt)
+% - Specialised packages (%sp)
+% - Word count configuration (%wc)
+% - Drafting annotations (%dra)
+% - Squeeze (%sq)
+% - Document configuration (%conf)
+% - Preamble, document-specific definitions (%pre)
+% - Document (%doc)
+
+
+%%%%%%%%%%opt
+% OPTIONAL PACKAGES
+
+%% Page layout
+%\usepackage{lua-visual-debug}  % Activate this package to draw boxes and rules in output for debugging
+%\usepackage{parskip}  % Activate this package to draw spacing between paragraphs and remove indentation
+%\usepackage{changepage}  % Enable margin adjustments and the adjustwidth environment
+%\usepackage{pdfpages} % Enable inclusion of entire PDF pages
+%\usepackage[bottom]{footmisc}  % Force footnotes to very bottom of pages, and below bottom floats (enable this if disabling /flushbottom)
+
+%% Tables and figures
+%\usepackage{rotfloat}  % Provide rotated floats
+%\usepackage{wrapfig}  % Provide tables and figures that are wrapped around by text
+%\usepackage{tcolorbox}  % Provide highlighted boxes
+
+%% Sections and linking
+%\usepackage{appendix}  % Enable appendix layout adjustments and provide section or part-specific appendices with the subappendices environment
+%\usepackage{embedfile}  % Support embedding files in the PDF output
+%\usepackage{hypgotoe}  % Provide hyperlinks to embedded PDFs in the PDF output
+
+%% Citations
+\usepackage{yushiyang-biblatex} % Provide automatically formatted citations and references sections
+
+
+%%%%%%%%%%sp
+% SPECIALISED PACKAGES
+
+%% Graphics
+%\usepackage{yushiyang-tikz}  % Provide general vector graphics (basis of most embedded graphics packages)
+%\usepackage{yushiyang-pgfplots}  % Provide function or data plots
+
+%% Chemistry
+%\usepackage{mhchem}  % Provide chemical formulae and equations
+
+%% Electronics
+%\usepackage{yushiyang-circuitikz}  % Provide circuit diagrams
+
+%% Software
+%\usepackage{yushiyang-minted} % Provide source code environment with syntax highlighting (requires --shell-escape option, and requires Python package Pygments; pip install Pygments)
+%\usepackage[os=win]{menukeys}  % Provide formatted menu sequences and key strokes
+
+%% Management
+%\usepackage{yushiyang-pgfgantt}  % Provide Gantt charts
+
+
+%%%%%%%%%%wc
+% WORD COUNT CONFIGURATION
+
+% TeXcount instructions start with %TC:
+% To disable, insert a space between % and TC, as in % TC:
+
+%% Do not count document title
+%TC:macro \title [ignore]
+
+%% Treat maths environments from package amsmath like other maths environments
+%TC:envir gather [] displaymath
+
+%% Count code blocks as display math
+%TC:envir minted [ignore] displaymath
+%TC:macro \mint [ignore,displaymath]
+%TC:macro \mintinline [ignore,inlinemath]
+
+%TC:macro \textcolor [ignore,text]
+%TC:macro \newgeometry [ignore]
+
+
+%%%%%%%%%%dra
+% DRAFTING ANNOTATIONS (enable during drafting only)
+
+%% Show text block, header, footer and sidebar boundaries and crop marks (package geometry)
+%\geometry{showframe, showcrop}
+
+%% Colour hyperlinks (package hyperref)
+%\hypersetup{colorlinks=false}
+
+%% Disable bookmark generation for quicker builds (package bookmark)
+%\bookmarksetup{draft=true}
+
+
+%%%%%%%%%%sq
+% SQUEEZE
+
+%% Caption spacing (package caption)
+%\captionsetup{aboveskip=0pt}
+%\captionsetup[table]{belowskip=0.5ex}
+
+%% Section title spacing (package titlesec)
+%\titlespacing*{\section}{0pt}{2ex plus 1.6ex minus 0.6ex}{1ex plus 0.8ex minus 0.2ex}
+%\titlespacing*{\subsection}{0pt}{1.6ex plus 1.2ex minus 0.4ex}{1ex plus 0.8ex minus 0.2ex}
+
+
+%%%%%%%%%%conf
+% DOCUMENT CONFIGURATION
+
+%% Page layout (package geometry)
+\geometry{margin=1in}
+
+%% Make bottom of all pages flush (enable package footmisc with option bottom if disabling this, which works better with the default \raggedbottom)
+\flushbottom
+
+%% Fix footnotes appearing on the following page (only enable this if the issue is observed)
+%\usepackage{etoolbox}
+%\makeatletter
+%	\patchcmd\end@float{\@cons\@currlist\@currbox}{\@cons\@currlist\@currbox\global\holdinginserts\@ne}{}{}
+%	\apptocmd\@specialoutput{\global\holdinginserts\z@}
+%\makeatother
+
+%% Keep floats within their sections (package placeins)
+%\let\Oldsection\section \renewcommand{\section}{\FloatBarrier\Oldsection}
+%\let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
+%\let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
+
+%% Show sections in the table of contents up to a certain depth only
+%\setcounter{secnumdepth}{1}
+
+%% Change depth of appendices in table of contents and PDF bookmarks (requires dissociating PDF bookmark depth above)
+%\hypersetup{bookmarksdepth=subsubsection}  % Dissociate PDF bookmark depth from table of contents depth in preamble (required if changing tocdepth mid-document)
+%\appto\appendix{
+%	\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}  % Change tocdepth in the middle of the table of contents
+%	\hypersetup{bookmarksdepth=1}
+%}
+
+%% Modify section numbering format
+%\renewcommand{\thesection}{\arabic{section}}
+%\renewcommand{\thesubsection}{\arabic{section}(\alph{subsection})}
+%\renewcommand{\thesubsubsection}{\arabic{section}(\alph{subsection})(\roman{subsubsection})}
+
+%% Modify appendix numbering format (use smallcaps)
+\appto\appendix{
+	\renewcommand{\thesection}{\asc{\Alph{section}}}
+	\renewcommand{\thesubsection}{\asc{\Alph{section}}.\arabic{subsection}}
+	\renewcommand{\thesubsubsection}{\asc{\Alph{section}}.\arabic{subsection}.\arabic{subsubsection}}
+}
+
+%% Modify equation numbering format
+%\renewcommand{\theequation}{\asc{L}\arabic{equation}}
+
+%% List spacing (package enumitem)
+\setlist{noitemsep}
+
+%% Reduce captions font size or modify caption margins (package caption)
+%\captionsetup{font=small}
+%\captionsetup{margin=\parindent}
+
+%% Use uncertainties in parentheses instead of with plus-minus (package siunitx)
+%\sisetup{ separate-uncertainty=false }
+
+%% Circled text (package tikz)
+%\newcommand*\circled[1]{\tikzifexternalizing{}{\tikzexternaldisable}\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1.2pt] (char) {#1};}\tikzifexternalizing{}{\tikzexternaldisable}}
+
+
+%%%%%%%%%%pre
+% PREAMBLE (document-specific definitions)
+
+%% Bibliography file (package biblatex)
+%\addbibresource{document.bib}
+
+%% Colours (package xcolor)
+\definecolor{mintedKeyword}{HTML}{0000ff}
+\definecolor{mintedType}{HTML}{2b91af}
+\definecolor{mintedComment}{HTML}{008000}
+
+%% Custom maths constants and other macros
+\renewcommand*{\d}{\symit{d}}
+\newcommand*{\e}{e}
+%\renewcommand*{\i}{\symrm{j}}
+\newcommand*{\cpi}{\pi}
+\newcommand*{\R}{\symbb{R}}
+
+%\newcommand*{\xv}{\symbf{x}}
+
+%% Custom maths operators (similar to nabla, sin, etc.)
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\pdf}{\symit{p}}
+%% DeclareMathOperator* places subscripts underneath
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+%% Acronyms (package glossaries)
+%\newacronym{cdf}{\asc{CDF}}{cumulative density function}
+%\newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
+%\newacronym{gui}{\asc{GUI}}{graphical user interface} \glsunset{gui}
+%\newacronym{2d}{\asc{2D}}{2-dimensional} \glsunset{2d}
+
+
+%%%%%%%%%%doc
+\begin{document}
+	\title{\texttt{hyperref} and \texttt{biblatex} test}
+	\author{Yu Shiyang}
+
+	%\setlength{\droptitle}{-1\baselineskip}
+
+	\maketitle
+
+	\section{P\asc{DF} links} \label{sec:links}
+
+		\begin{table}[!htb]
+			\centering
+			\caption{\texttt{hyperref} link examples}
+			\begin{tabular}{l l}
+				\toprule
+				Type               & Example \\
+				\midrule
+				\texttt{linkcolor}  & \autoref{sec:links} \\
+				\texttt{citecolor} & \textcite{citation} \\
+				\texttt{filecolor} & \href{example-image.pdf}{file}\\
+				\texttt{urlcolor}& \url{www.latex-project.org}\\
+				\texttt{menucolor}  & \Acrobatmenu{view}{view something}\\
+				\texttt{runcolor}  &  \href{run:sumatra}{run something}\\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+
+		You can read more in \autoref{sec:links} and in the citation\autocite{citation}. Both of which contain a~\href{example-image.pdf}{file} that can also be found at \url{www.latex-project.org}. Such a file helps you \Acrobatmenu{view}{view something} or, alternatively \href{run:sumatra}{run something}, which is rather nice.
+
+		Adapted from \url{https://tex.stackexchange.com/a/525984/64398}.
+
+	\begin{thebibliography}{0}
+		\bibitem{citation} Citation
+	\end{thebibliography}
+
+\end{document}

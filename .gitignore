@@ -4,3 +4,7 @@ syntax: glob
 *.pdf
 *.synctex
 *.synctex.gz
+*.bbl
+*.bcf
+*.blg
+*.run.xml

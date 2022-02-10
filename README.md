@@ -41,6 +41,15 @@ LuaTeX should not be confused with LaTeX; LaTeX is an extension of the original 
 
 A similar output engine is XeTeX (and the analogous XeLaTeX), which also supports Unicode input and PDF output. However, LuaLaTeX is used here as its font handling was found to be more robust, though it is still not great.
 
+### Compiling template and test files
+
+<dl>
+	<dt><code>template.tex</code></dt>
+	<dd><code>lualatex template.tex</code></dd>
+	<dt><code>test-hyperref-biblatex.tex</code></dt>
+	<dd><code>lualatex test-hyperref-biblatex.tex && biber test-hyperref-biblatex && lualatex test-hyperref-biblatex.tex</code></dd>
+</dl>
+
 
 ## Word count
 
