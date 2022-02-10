@@ -97,19 +97,31 @@
 % Provide multilingual support
 \usepackage{babel}
 
-% Enable custom date and time formatting (mainly for the automatic document date)
+% Enable custom date and time formatting (mainly for the automatically generated document date)
 \usepackage[useregional]{datetime2}
-	\DTMlangsetup*{ord=omit}  % Remove ordinals from dates (does not  apply to biblatex, which must be set separately)
+	% Remove ordinals from dates for all English modules supported by datetime2-english (does not  apply to biblatex, which must be set separately)
+	\DTMlangsetup[english]{ord=omit}
+	\DTMlangsetup[en-GB]{ord=omit}
+	\DTMlangsetup[en-US]{ord=omit}
+	\DTMlangsetup[en-CA]{ord=omit}
+	\DTMlangsetup[en-AU]{ord=omit}
+	\DTMlangsetup[en-NZ]{ord=omit}
+	\DTMlangsetup[en-GG]{ord=omit}
+	\DTMlangsetup[en-JE]{ord=omit}
+	\DTMlangsetup[en-IM]{ord=omit}
+	\DTMlangsetup[en-MT]{ord=omit}
+	\DTMlangsetup[en-IE]{ord=omit}
 
 % Provide smart quotes (autopunct disables reordering of punctuation)
 \usepackage[strict=true]{csquotes}
 	\ExecuteQuoteOptions{autostyle=true, autopunct=false}
 
-	% Make double quotes outer quotes like normal people (replace everything with "american")
+	% Make double quotes outer quotes like normal people (replace everything with "american") for all variants of English supported by csquotes
 	% Silly rearrangements of punctuation with "american" should be disabled by autopunct=false
 	\DeclareQuoteAlias{american}{british}
 	\DeclareQuoteAlias{american}{australian}
 	\DeclareQuoteAlias{american}{newzealand}
+	% "english" and "canadian" aliased to "american" by default
 
 	% Automatically replace " with smart quotes
 	\MakeOuterQuote{"}
