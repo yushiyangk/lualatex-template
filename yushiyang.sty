@@ -100,17 +100,18 @@
 % Enable custom date and time formatting (mainly for the automatically generated document date)
 \usepackage[useregional]{datetime2}
 	% Remove ordinals from dates for all English modules supported by datetime2-english (does not  apply to biblatex, which must be set separately)
-	\DTMlangsetup[english]{ord=omit}
-	\DTMlangsetup[en-GB]{ord=omit}
-	\DTMlangsetup[en-US]{ord=omit}
-	\DTMlangsetup[en-CA]{ord=omit}
-	\DTMlangsetup[en-AU]{ord=omit}
-	\DTMlangsetup[en-NZ]{ord=omit}
-	\DTMlangsetup[en-GG]{ord=omit}
-	\DTMlangsetup[en-JE]{ord=omit}
-	\DTMlangsetup[en-IM]{ord=omit}
-	\DTMlangsetup[en-MT]{ord=omit}
-	\DTMlangsetup[en-IE]{ord=omit}
+	% Starred command suppresses the error if a setting is not available for the given module
+	\DTMlangsetup*[english]{ord=omit}
+	\DTMlangsetup*[en-GB]{ord=omit}
+	\DTMlangsetup*[en-US]{ord=omit}
+	\DTMlangsetup*[en-CA]{ord=omit}
+	\DTMlangsetup*[en-AU]{ord=omit}
+	\DTMlangsetup*[en-NZ]{ord=omit}
+	\DTMlangsetup*[en-GG]{ord=omit}
+	\DTMlangsetup*[en-JE]{ord=omit}
+	\DTMlangsetup*[en-IM]{ord=omit}
+	\DTMlangsetup*[en-MT]{ord=omit}
+	\DTMlangsetup*[en-IE]{ord=omit}
 
 % Provide smart quotes (autopunct disables reordering of punctuation)
 \usepackage[strict=true]{csquotes}
