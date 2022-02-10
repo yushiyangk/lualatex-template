@@ -1,3 +1,11 @@
+# LuaLaTeX template
+
+To use, copy `template.tex`, `yushiyang.sty` and `fonts/` to a new directory and edit `template.tex`, then [compile](#compiling). The template file `template.tex` can be renamed and edited as desired, while the package file `yushiyang.sty` should not be modified typically.
+
+To enable optional packages, uncomment the appropriate <code>\usepackage{<var>package_name</var>}</code> lines in the template.
+
+**Important note**: Any package which has a name that starts with `yushiyang-` is a custom package (mostly customised versions of standard packages). To enable any such package, copy the package file, <code>yushiyang-<var>base_name</var>.sty</code>, as well to the same directory as the `.tex` file, and then uncomment the appropriate line in the `.tex` file.
+
 ## Compiling
 
 Requires [LuaLaTeX](#lualatex), and assumes source files are UTF-8 encoded.
