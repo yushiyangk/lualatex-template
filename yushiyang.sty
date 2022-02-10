@@ -145,8 +145,21 @@
 	\let\oldthanks\thanks
 	\renewcommand\thanks[1]{\begingroup\let\rlap\relax\oldthanks{#1}\endgroup}
 
-% Fixes for footnotes inside captions or headings
-\usepackage{ftnxtra}
+% Fixes for footnotes
+\usepackage{footnote}
+	% Ensure that footnotes inside figures and tables do not disappear (however ibids and cross-references do not work)
+	\makesavenoteenv{tabular}
+	\makesavenoteenv{table}
+	\makesavenoteenv{figure}
+	% Ensure that footnotes inside environments provided by package rotating (via package rotfloat) do not disappear
+	\makesavenoteenv{sidewaysfigure}
+	\makesavenoteenv{sidewaystable}
+	% Ensure that footnotes inside environments provided by package wrapfig do not disappear
+	\makesavenoteenv{wrapfigure}
+	\makesavenoteenv{wraptable}
+	% Ensure that footnotes inside environments provided by package tcolorbox do not disappear
+	\makesavenoteenv{tcolorbox}
+	% Any custom environments will need this to be applied manually
 
 % Enable section heading layout adjustments
 \usepackage{titlesec}
