@@ -23,6 +23,7 @@
 %% Page layout
 %\usepackage{lua-visual-debug}  % Activate this package to draw boxes and rules in output for debugging
 %\usepackage{parskip}  % Activate this package to draw spacing between paragraphs and remove indentation
+%\usepackage{setspace}  % Enable line spacing adjustments
 %\usepackage{changepage}  % Enable margin adjustments and the adjustwidth environment
 %\usepackage{pdfpages} % Enable inclusion of entire PDF pages
 %\usepackage[bottom]{footmisc}  % Force footnotes to very bottom of pages, and below bottom floats (enable this if disabling /flushbottom)
@@ -117,6 +118,9 @@
 %% Page layout (package geometry)
 \geometry{margin=1in}
 
+%% Line spacing (package setspace)
+%\doublespacing
+
 %% Make bottom of all pages flush (enable package footmisc with option bottom if disabling this, which works better with the default \raggedbottom)
 \flushbottom
 
@@ -169,6 +173,10 @@
 
 %% Circled text (package tikz)
 %\newcommand*\circled[1]{\tikzifexternalizing{}{\tikzexternaldisable}\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1.2pt] (char) {#1};}\tikzifexternalizing{}{\tikzexternaldisable}}
+
+%% Times New Roman as main font (package fontspec)
+%\setmainfont[Kerning=On, Ligatures={Rare}]{Times New Roman}
+%\renewfontfamily\scfont[Kerning=On, Ligatures={Rare}, Scale=0.912871]{Times New Roman}  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
 
 
 %%%%%%%%%%pre
