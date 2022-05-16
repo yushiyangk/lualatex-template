@@ -43,11 +43,11 @@ If the `.bib` file has not been modified and only the text contents have been mo
 
 ### LuaLaTeX
 
-**LuaTeX** is an output engine for Donald Knuth's original TeX software, that natively supports Unicode (UTF-8) input and natively produces PDF output. It can be seen as a more modern version of pdfTeX (which also produces PDF output, but did not support Unicode), whereas the original TeX software could only produce Postscript output (and did not support Unicode).
+**LuaTeX** is an output engine for Donald Knuth's original TeX software, that natively supports Unicode (UTF-8) input and natively produces PDF output. It can be seen as a more modern version of pdfTeX (which also produced PDF output, but did not support Unicode), whereas the original TeX software could only produce Postscript output (and did not support Unicode).
 
-LuaTeX should not be confused with LaTeX; LaTeX is an extension of the original TeX that provides many built-in commands/macros that make it much more usable than plain TeX. **LuaLaTeX** is a software package that provides the LaTeX extensions while using LuaTeX to produce its final PDF output.
+LuaTeX should not be confused with LaTeX; **LaTeX** is an extension of the original TeX that provides many built-in commands/macros that make it much more usable than plain TeX. **LuaLaTeX** is a software package that provides the LaTeX extensions while using LuaTeX to produce its final PDF output.
 
-A similar output engine is XeTeX (and the analogous XeLaTeX), which also supports Unicode input and PDF output. However, LuaLaTeX is used here as its font handling was found to be more robust, though it is still not great.
+A similar output engine is XeTeX (with the analogous XeLaTeX), which also supports Unicode input and PDF output. However, LuaLaTeX is used here as its font handling was found to be more robust, though it is still not great.
 
 ### Compiling template and test files
 
