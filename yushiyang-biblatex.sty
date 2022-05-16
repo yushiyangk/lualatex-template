@@ -10,11 +10,12 @@
 	\renewbibmacro{in:}{}
 
 	% "URL: <url> (accessed <date>)" for all English variants supported by biblatex
-	\DefineBibliographyStrings{american}{urlseen={accessed}}
-	\DefineBibliographyStrings{british}{urlseen={accessed}}
-	\DefineBibliographyStrings{canadian}{urlseen={accessed}}
-	\DefineBibliographyStrings{australian}{urlseen={accessed}}
-	\DefineBibliographyStrings{newzealand}{urlseen={accessed}}
+	\DeclareFieldFormat{url}{\bibstring{url}\addcolon\space\url{#1}}
+	\DefineBibliographyStrings{american}{url={\asc{URL}}, urlseen={accessed}}
+	\DefineBibliographyStrings{british}{url={\asc{URL}}, urlseen={accessed}}
+	\DefineBibliographyStrings{canadian}{url={\asc{URL}}, urlseen={accessed}}
+	\DefineBibliographyStrings{australian}{url={\asc{URL}}, urlseen={accessed}}
+	\DefineBibliographyStrings{newzealand}{url={\asc{URL}}, urlseen={accessed}}
 
 	% Remove stupid ordinals from dates for all English variants supported by biblatex; ridiculous that this is necessary
 	% Taken from biblatex's australian style (australian.lbx), via https://tex.stackexchange.com/a/366416/64398
