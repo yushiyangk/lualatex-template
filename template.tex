@@ -132,6 +132,8 @@
 %\makeatother
 
 %% Keep floats within their sections (package placeins)
+%\let\Oldpart\part \renewcommand{\part}{\FloatBarrier\Oldpart}
+%\let\Oldchapter\chapter \renewcommand{\chapter}{\FloatBarrier\Oldchapter}
 %\let\Oldsection\section \renewcommand{\section}{\FloatBarrier\Oldsection}
 %\let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
 %\let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
