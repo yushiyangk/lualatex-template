@@ -1,0 +1,61 @@
+\documentclass[11pt, a4paper, british]{article}
+
+% Intended to be compiled with LuaLaTeX; assumes UTF-8 support
+
+\usepackage{yushiyang}
+
+%% Page layout (package geometry)
+\geometry{margin=1in}
+
+%% Make bottom of all pages flush (enable package footmisc with option bottom if disabling this, which works better with the default \raggedbottom)
+\flushbottom
+
+\newacronym{mac}{MAC}{media access control}
+
+\begin{document}
+	\title{\texttt{\backslash asc} test}
+	\author{Yu Shiyang}
+
+	%\setlength{\droptitle}{-1\baselineskip}
+
+	\maketitle
+
+	\section{Automatic smallcaps} \label{sec:links}
+
+		Paragraph text \asc{MySQL!*ÑñЉљИиΔδא人23ASDFǄǅǆ😋} more paragraph text.
+
+	\section{Acronyms and abbreviations}
+
+		The first-use flag for the acronym \texttt{mac} is reset in each subsection.
+
+		\subsection{Default}
+
+			\glsreset{mac}
+
+			First use: \gls{mac}. Subsequent use: \gls{mac}.
+
+		\subsection{Plural}
+
+			\glsreset{mac}
+
+			First use: \glspl{mac}. Plural, subsequent use: \glspl{mac}.
+
+		\subsection{Full capitalisation}
+
+			\glsreset{mac}
+
+			\Gls{mac}; first use. \Gls{mac}; subsequent use.
+
+		\subsection{Full capitalisation, plural}
+
+			\glsreset{mac}
+
+			\Glspl{mac}; first use. \Glspl{mac}; subsequent use.
+
+		\subsection{Comparison between cases}
+
+			\glsreset{mac}
+
+			\gls{mac}\Gls{mac}\gls{mac}\Glspl{mac}s\glspl{mac}s
+
+\end{document}
