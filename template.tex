@@ -22,7 +22,9 @@
 
 %% Page layout
 %\usepackage{lua-visual-debug}  % Activate this package to draw boxes and rules in output for debugging
-%\usepackage{parskip}  % Activate this package to draw spacing between paragraphs and remove indentation
+%\usepackage{parskip}  % Activate this package to add spacing between paragraphs and remove indentation
+%\usepackage{titlepic}  % Provide a title page picture for article, report or book document classes
+%\usepackage{calc}  % Enable arithmetic on lengths and measuring lengths from content
 %\usepackage{setspace}  % Enable line spacing adjustments
 %\usepackage{changepage}  % Enable margin adjustments and the adjustwidth environment
 %\usepackage{pdfpages} % Enable inclusion of entire PDF pages
@@ -138,8 +140,10 @@
 %\let\Oldsubsection\subsection \renewcommand{\subsection}{\FloatBarrier\Oldsubsection}
 %\let\Oldsubsubsection\subsubsection \renewcommand{\subsubsection}{\FloatBarrier\Oldsubsubsection}
 
-%% Show sections in the table of contents up to a certain depth only
-%\setcounter{secnumdepth}{1}
+%% Number sections up to a certain depth only (article defaults to 3, report and book defaults to 2)
+%\setcounter{secnumdepth}{2}
+%% Show sections in the table of contents up to a certain depth only (article defaults to 3, report and book defaults to 2)
+%\setcounter{tocdepth}{3}
 
 %% Change depth of appendices in table of contents and PDF bookmarks (requires dissociating PDF bookmark depth above)
 %\hypersetup{bookmarksdepth=subsubsection}  % Dissociate PDF bookmark depth from table of contents depth in preamble (required if changing tocdepth mid-document)
@@ -155,6 +159,12 @@
 
 %% Modify appendix numbering format (use smallcaps)
 \appto\appendix{
+	% For document classes with chapters
+	%\renewcommand{\thechapter}{\asc{\Alph{chapter}}}
+	%\renewcommand{\thesection}{\asc{\Alph{chapter}}.\arabic{section}}
+	%\renewcommand{\thesubsection}{\asc{\Alph{chapter}}.\arabic{section}.\arabic{subsection}}
+
+	% For document classes without chapters
 	\renewcommand{\thesection}{\asc{\Alph{section}}}
 	\renewcommand{\thesubsection}{\asc{\Alph{section}}.\arabic{subsection}}
 	\renewcommand{\thesubsubsection}{\asc{\Alph{section}}.\arabic{subsection}.\arabic{subsubsection}}
