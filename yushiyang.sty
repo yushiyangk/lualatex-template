@@ -449,6 +449,9 @@
 % Lining numbers
 \newrobustcmd*{\lining}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
 
+% Titling case
+\newrobustcmd*{\titling}[1]{\lining{#1}}
+
 % Sequences of alphanumeric characters (without smallcaps; Letters={Uppercase} switches on case-sensitive forms)
 \newrobustcmd*{\an}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
 
