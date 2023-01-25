@@ -14,6 +14,7 @@
 %   - Tables and figures packages (%fig)
 %   - Sections and linking packages (%sec)
 %   - Unicode mathematics packages (%um)
+% - Lua dependencies (%lua)
 % - Fonts (%font)
 % - Mathematics commands (%mc)
 % - Typography commands (%tc)
@@ -330,6 +331,12 @@
 	% warnings-off={...} disables warnings about redefined \overbracket, \underbracket, \dblcolon, \coloneqq, \Coloneqq, \eqqcolon due to package mathtools
 
 
+%%%%%%%%%%lua
+% LUA DEPENDENCIES
+
+\directlua{dofile("yushiyang.lua")} % Read the lua file
+
+
 %%%%%%%%%%font
 % FONTS
 
@@ -456,7 +463,7 @@
 \newrobustcmd*{\an}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
 
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (visually imperfect workaround)
-\newcommand*{\asc}[1]{{\scfont \an{#1}}}
+\newcommand*{\asc}[1]{\directlua{latexAutoSmallcaps("#1")}}
 
 
 %%%%%%%%%%fc
