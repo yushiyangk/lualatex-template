@@ -290,11 +290,12 @@
 	% Convert formatting commands to plain text in bookmark labels
 	\pdfstringdefDisableCommands{%
 		% Custom typography commands
-		\renewcommand{\an}[1]{#1}
-		\renewcommand{\asc}[1]{#1}
-
+		\renewcommand{\lining}[1]{#1}%
+		\renewcommand{\titling}[1]{#1}%
+		\renewcommand{\an}[1]{#1}%
+		\renewcommand{\asc}[1]{#1}%
 		% Maths mode
-		\renewcommand{\sin}{sin}
+		\renewcommand{\sin}{sin}%
 	}
 
 % Allow printing without coloured hyperlinks from package hyperref
@@ -317,7 +318,9 @@
 \usepackage{glossaries-extra}
 	\setabbreviationstyle{short-nolong}  % always "short" for entries defined with \newabbreviation
 	\setabbreviationstyle[acronym]{long-short}  % "long (short)" on first use for entries defined with \newacronym
+	\renewcommand*{\glsabbrvdefaultfont}[1]{\asc{#1}}  % WARNING: \GLS will all be converted to smallcaps as well, which may be undesirable
 	\glsdisablehyper  % Do not hyperlink any terms in the text
+
 
 
 %%%%%%%%%%um
@@ -463,7 +466,7 @@
 \newrobustcmd*{\an}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
 
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (visually imperfect workaround)
-\newcommand*{\asc}[1]{\directlua{latexAutoSmallcaps("#1")}}
+\newrobustcmd*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
 
 
 %%%%%%%%%%fc
