@@ -294,6 +294,7 @@
 		\renewcommand{\titling}[1]{#1}%
 		\renewcommand{\an}[1]{#1}%
 		\renewcommand{\asc}[1]{#1}%
+		\renewcommand{\Asc}[1]{#1}%
 		% Maths mode
 		\renewcommand{\sin}{sin}%
 	}
@@ -467,6 +468,7 @@
 
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (visually imperfect workaround)
 \newrobustcmd*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
+\newrobustcmd*{\Asc}[1]{\directlua{latexAutoSmallcaps([[\makefirstuc {#1}]])}}
 
 
 %%%%%%%%%%fc
