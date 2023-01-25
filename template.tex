@@ -202,14 +202,15 @@
 \definecolor{mintedType}{HTML}{2b91af}
 \definecolor{mintedComment}{HTML}{008000}
 
-%% Custom maths constants and other macros
+%% Custom formatting commands
+\newcommand*{\code}[1]{\texttt{#1}}
+
+%% Custom maths constants
 \renewcommand*{\d}{\symit{d}}
 \newcommand*{\e}{e}
 %\renewcommand*{\i}{\symrm{j}}
 \newcommand*{\cpi}{\pi}
 \newcommand*{\R}{\symbb{R}}
-
-%\newcommand*{\xv}{\symbf{x}}
 
 %% Custom maths operators (similar to nabla, sin, etc.)
 \DeclareMathOperator{\sign}{sign}
@@ -218,11 +219,19 @@
 \DeclareMathOperator*{\argmin}{argmin}
 \DeclareMathOperator*{\argmax}{argmax}
 
-%% Acronyms (package glossaries-extra)
+%% Maths macros
+%\newcommand*{\xv}{\symbf{x}}
+
+%% Text macros; \xspace prevents automatic gobbling of subsequent whitespace after each use of the macro (package xspace)
+%\newcommand*{\supercali}{supercalifragilisticexpialidocious\xspace}
+
+%% Abbreviations will always be rendered as "short" (package glossaries-extra)
+%\newabbreviation{usb}{\asc{USB}}{Universal Serial Bus}
+
+%% Acronyms will be rendered as "long (short)" on first use (unless using \glsunset), then "short" subsequently (package glossaries-extra)
 %\newacronym{cdf}{\asc{CDF}}{cumulative density function}
 %\newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
 %\newacronym{gui}{\asc{GUI}}{graphical user interface} \glsunset{gui}
-%\newacronym{2d}{\asc{2D}}{2-dimensional} \glsunset{2d}
 
 
 %%%%%%%%%%doc

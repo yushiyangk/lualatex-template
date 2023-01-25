@@ -314,7 +314,8 @@
 %\usepackage{glossaries}
 %	% \setacronymstyle{long-short}
 \usepackage{glossaries-extra}
-	\setabbreviationstyle[acronym]{long-short}
+	\setabbreviationstyle{short-nolong}  % always "short" for entries defined with \newabbreviation
+	\setabbreviationstyle[acronym]{long-short}  % "long (short)" on first use for entries defined with \newacronym
 	\glsdisablehyper  % Do not hyperlink any terms in the text
 
 
