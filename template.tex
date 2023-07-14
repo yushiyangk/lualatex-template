@@ -181,7 +181,10 @@
 %\captionsetup{margin=\parindent}
 
 %% Use uncertainties in parentheses instead of with plus-minus (package siunitx)
-%\sisetup{ separate-uncertainty=false }
+%\sisetup{separate-uncertainty=false}
+
+%% Use en dash for unit ranges instead of the word "to" (package siunitx)
+%\sisetup{range-phrase=--, range-units=single}
 
 %% Circled text (package tikz)
 %\newcommand*\circled[1]{\tikzifexternalizing{}{\tikzexternaldisable}\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1.2pt] (char) {#1};}\tikzifexternalizing{}{\tikzexternaldisable}}
