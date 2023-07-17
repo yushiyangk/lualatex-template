@@ -320,7 +320,23 @@
 	\setabbreviationstyle{short-nolong}  % always "short" for entries defined with \newabbreviation
 	\setabbreviationstyle[acronym]{long-short}  % "long (short)" on first use for entries defined with \newacronym
 	\renewcommand*{\glsabbrvdefaultfont}[1]{\asc{#1}}  % WARNING: \GLS will all be converted to smallcaps as well, which may be undesirable
-	\glsdisablehyper  % Do not hyperlink any terms in the text
+	% For abbreviations/acronyms in the glossary, print their long forms as well as description (if different)
+	\let\Oldglspostdescription\glspostdescription
+	\renewcommand*{\glspostdescription}{}
+	\renewcommand*{\glossentrydesc}[1]{
+		\ifglshasdesc{#1}{
+			\ifglshaslong{#1}{
+				\ifthenelse{\equal{\glsentrylong{#1}}{\glsentrydesc{#1}}}{
+					\glsentrylong{#1}\Oldglspostdescription
+				}{
+					\glsentrylong{#1} --- \glsentrydesc{#1}\Oldglspostdescription
+				}
+			}{
+				\glsentrydesc{#1}\Oldglspostdescription
+			}
+		}{}
+	}
+	\newrobustcmd*{\glsref}[2]{\newglossaryentry{glsref-#1}{name={\expandafter\glsentryname{#1}}, sort={#2}, see={[see under]\glsentryparent{#1}}, description={}}}
 
 
 
