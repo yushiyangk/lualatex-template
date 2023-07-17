@@ -193,6 +193,9 @@
 %% Circled text (package tikz)
 %\newcommand*\circled[1]{\tikzifexternalizing{}{\tikzexternaldisable}\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1.2pt] (char) {#1};}\tikzifexternalizing{}{\tikzexternaldisable}}
 
+%% Simpler menu directions (package menukeys)
+\newmenustylesimple*{simplemenus}{\textsf{\CurrentMenuElement}}[ ‣ ]{gray} \renewmenumacro{\menu}[>]{simplemenus}
+
 %% Times New Roman as main font (package fontspec)
 %\setmainfont[Kerning=On, Ligatures={Rare}]{Times New Roman}
 %\renewfontfamily\scfont[Kerning=On, Ligatures={Rare}, Scale=0.912871]{Times New Roman}  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
@@ -204,6 +207,12 @@
 %% Bibliography file (package biblatex)
 %\addbibresource{document.bib}
 
+%% Custom fonts (package fontspec)
+%\newfontfamily\extrafont[
+%	Path=fonts/, Extension=.ttf, UprightFont=*-600, ItalicFont=*-600italic, BoldFont=*-700, BoldItalicFont=*-700italic,
+%	Kerning=On, Ligatures={Common}, Diacritics={MarkToBase, MarkToMark}, Scale=MatchLowercase,
+%]{source-sans-pro}
+
 %% Colours (package xcolor)
 \definecolor{mintedKeyword}{HTML}{0000ff}
 \definecolor{mintedType}{HTML}{2b91af}
@@ -211,6 +220,13 @@
 
 %% Custom formatting commands
 \newcommand*{\code}[1]{\texttt{#1}}
+
+%% Custom environments
+%\newenvironment*{specs}[1]{
+%	\vspace{\topsep + \parskip + \partopsep}\begin{tabular}{@{} #1}
+%}{
+%	\end{tabular}\vspace{\topsep + \parskip + \partopsep}
+%}
 
 %% Custom maths constants
 \renewcommand*{\d}{\symit{d}}
@@ -232,6 +248,9 @@
 %% Text macros; \xspace prevents automatic gobbling of subsequent whitespace after each use of the macro (package xspace)
 %\newcommand*{\supercali}{supercalifragilisticexpialidocious\xspace}
 
+%% Build glossaries in external file (package glossaries-extra)
+%\makeglossaries
+
 %% Abbreviations will always be rendered as "short" (package glossaries-extra)
 %\newabbreviation{usb}{\asc{USB}}{Universal Serial Bus}
 
@@ -239,9 +258,6 @@
 %\newacronym{cdf}{\asc{CDF}}{cumulative density function}
 %\newacronym{ebnf}{\asc{EBNF}}{extended Backus--Naur form}
 %\newacronym{gui}{\asc{GUI}}{graphical user interface} \glsunset{gui}
-
-%% Build glossaries in external file before it can be rendered
-%\makeglossaries
 
 
 %%%%%%%%%%doc
