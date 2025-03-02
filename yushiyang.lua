@@ -5,7 +5,7 @@ unicode_tc={[453]={68,382},[456]={76,106},[459]={78,106},[498]={68,122},[8072]={
 function makeUppercaseSmallcap(codepoint, character)
 	character = utf8.char(codepoint)
 	if unicode_uc[codepoint] ~= nil then -- if in the uppercase set
-		return "{\\scfont " .. character .. "}"
+		return "\\textpseudosc{" .. character .. "}"
 	elseif unicode_tc[codepoint] ~= nil then -- if in the titlecase set
 		decomp = unicode_tc[codepoint]
 		output = ""

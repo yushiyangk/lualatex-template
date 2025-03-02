@@ -96,7 +96,7 @@
 % LOCALISATION PACKAGES
 
 % Provide multilingual support
-\usepackage{babel}
+\usepackage[provide=*]{babel}
 
 % Enable custom date and time formatting (mainly for the automatically generated document date)
 \usepackage[useregional]{datetime2}
@@ -361,7 +361,7 @@
 % FONTS
 
 % Libertinus as main font (package fontspec)
-\setmainfont[  % Default Latin Modern
+\babelfont{rm}[  % Default Latin Modern
 	Path=fonts/,
 	Extension=.otf,
 	UprightFont=*-Regular,
@@ -378,7 +378,7 @@
 ]{LibertinusSerif}
 
 % Scaled Libertinus for use with \asc custom command, which is a visually imperfect workaround for the lack of appropriately-sized smallcaps in Libertinus
-\newfontfamily\scfont[
+\babelfont{pseudosc}[
 	Path=fonts/,
 	Extension=.otf,
 	UprightFont=*-Regular,
@@ -396,7 +396,7 @@
 ]{LibertinusSerif}
 
 % Source Sans Pro as sans serif font (package fontspec)
-\setsansfont[
+\babelfont{sf}[
 	Path=fonts/,
 	Extension=.ttf,
 	UprightFont=*-regular,
@@ -412,7 +412,7 @@
 ]{source-sans-pro}
 
 % Consolas as monospace font (package fontspec)
-\setmonofont[
+\babelfont{tt}[
 	Path=fonts/,
 	Extension=.ttf,
 	UprightFont=*,
