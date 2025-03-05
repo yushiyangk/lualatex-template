@@ -1,0 +1,256 @@
+\documentclass[11pt, a4paper]{article}
+
+% Intended to be compiled with LuaLaTeX; assumes UTF-8 support
+
+\usepackage{yushiyang}
+
+
+% Arabic
+\babelfont[*arabic]{rm}[
+	Path=babel-fonts/,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic,
+]{Amiri}
+
+% CJK except Hong Kong and Macau, i.e. Simplified Chinese, Traditional Chinese (Taiwan), Japanese, Korean
+\babelfont[*cjk,*japanese]{rm}[
+	Path=babel-fonts/,
+	Extension=.ttc,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+]{SourceHanSerif}
+\babelfont[*cjk,*japanese]{sf}[
+	Path=babel-fonts/,
+	Extension=.ttc,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+]{SourceHanSans}
+
+% Traditional Chinese (Hong Kong and Macau)
+\babelfont[chinese-traditional-hongkongsarchina,chinese-traditional-macausarchina,chinese-hant-hk,chinese-hant-mo]{rm}[
+	Path=babel-fonts/,
+	Extension=.ttc,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	Language=Chinese Hong Kong,
+]{SourceHanSerif}
+\babelfont[chinese-traditional-hongkongsarchina,chinese-traditional-macausarchina,chinese-hant-hk,chinese-hant-mo]{sf}[
+	Path=babel-fonts/,
+	Extension=.ttc,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	Language=Chinese Hong Kong,
+]{SourceHanSans}
+
+\newabbreviation{cjk}{CJK}{Chinese, Japanese, Korean}
+
+
+%% Page layout (package geometry)
+\geometry{margin=1in}
+
+%% Make bottom of all pages flush (enable package footmisc with option bottom if disabling this, which works better with the default \raggedbottom)
+\flushbottom
+
+
+\begin{document}
+	\selectlanguage{british}  % Cannot be specified in the document class due to https://github.com/latex3/babel/issues/333
+
+	\title{\texttt{babel} test}
+	\author{Yu Shiyang}
+
+	%\setlength{\droptitle}{-1\baselineskip}
+
+	\maketitle
+
+	\section{Arabic}
+
+		\begin{selectlanguage}{arabic}
+			\begin{displayquote}
+				يولد جميع الناس أحرارًا متساوين في الكرامة والحقوق. وقد وهبوا عقلاً وضميرًا وعليهم أن يعامل بعضهم بعضًا بروح الإخاء.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \foreignlanguage{arabic}{ثعلب} jumps over the lazy \foreignlanguage{arabic}{كلب}.
+
+	\section{Chinese}
+
+		\subsection{Simplified Chinese}
+
+			\begin{selectlanguage}{chinese-hans}
+				\begin{displayquote}
+					人人生而自由，在尊严和权利上一律平等。他们赋有理性和良心，并应以兄弟关系的精神相对待。
+				\end{displayquote}
+			\end{selectlanguage}
+
+			The quick brown \foreignlanguage{chinese-hans}{狐狸} jumps over the lazy \foreignlanguage{chinese-hans}{狗}.
+
+		\subsection{Traditional Chinese (Taiwan)}
+
+			\begin{selectlanguage}{chinese-hant}
+				\begin{displayquote}
+					人人生而自由，在尊嚴和權利上一律平等。他們賦有理性和良心，並應以兄弟關係的精神相對待。
+				\end{displayquote}
+			\end{selectlanguage}
+
+			The quick brown \foreignlanguage{chinese-hant}{狐狸} jumps over the lazy \foreignlanguage{chinese-hant}{狗}.
+
+		\subsection{Traditional Chinese (Hong Kong)}
+
+			\begin{selectlanguage}{chinese-hant-hk}
+				\begin{displayquote}
+					人人生而自由，在尊嚴和權利上一律平等。他們賦有理性和良心，並應以兄弟關係的精神相對待。
+				\end{displayquote}
+			\end{selectlanguage}
+
+			The quick brown \foreignlanguage{chinese-hant-hk}{狐狸} jumps over the lazy \foreignlanguage{chinese-hant-hk}{狗}.
+
+		\subsection{Traditional Chinese (Macau)}
+
+			\begin{selectlanguage}{chinese-hant-mo}
+				\begin{displayquote}
+					人人生而自由，在尊嚴和權利上一律平等。他們賦有理性和良心，並應以兄弟關係的精神相對待。
+				\end{displayquote}
+			\end{selectlanguage}
+
+			The quick brown \foreignlanguage{chinese-hant-mo}{狐狸} jumps over the lazy \foreignlanguage{chinese-hant-mo}{狗}.
+
+		\subsection{Han unification font comparison}
+
+			Refer to \autoref{tab:han}.
+
+			\begin{table}[!h]
+				\centering
+				\caption{Font support for regional variants of \gls{cjk} characters despite Han unification in Unicode, based on language metadata in the document}  \label{tab:han}
+				\begin{tabular}{l l c}
+					\toprule
+					\thead{Locale} & \thead{Characters} \\
+					\midrule
+					Simplified Chinese              & \foreignlanguage{chinese-hans}{返曜} \\
+					Traditional Chinese (Taiwan)    & \foreignlanguage{chinese-hant}{返曜} \\
+					Traditional Chinese (Hong Kong) & \foreignlanguage{chinese-hant-hk}{返曜} \\
+					Traditional Chinese (Macau)     & \foreignlanguage{chinese-hant-mo}{返曜} \\
+					Japanese                        & \foreignlanguage{japanese}{返曜} \\
+					Korean                          & \foreignlanguage{korean}{返曜} \\
+					\midrule
+					Simplified Chinese              & \foreignlanguage{chinese-hans}{\textsf{返曜}} \\
+					Traditional Chinese (Taiwan)    & \foreignlanguage{chinese-hant}{\textsf{返曜}} \\
+					Traditional Chinese (Hong Kong) & \foreignlanguage{chinese-hant-hk}{\textsf{返曜}} \\
+					Traditional Chinese (Macau)     & \foreignlanguage{chinese-hant-mo}{\textsf{返曜}} \\
+					Japanese                        & \foreignlanguage{japanese}{\textsf{返曜}} \\
+					Korean                          & \foreignlanguage{korean}{\textsf{返曜}} \\
+					\bottomrule
+				\end{tabular}
+			\end{table}
+
+
+	\section{English}
+
+		\begin{displayquote}
+			All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.
+		\end{displayquote}
+
+		The quick brown fox jumps over the lazy dog.
+
+	\section{French}
+
+		\begin{selectlanguage}{french}
+			\begin{displayquote}
+				Tous les êtres humains naissent libres et égaux en dignité et en droits. Ils sont doués de raison et de conscience et doivent agir les uns envers les autres dans un esprit de fraternité.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \textit{\foreignlanguage{french}{Fuchs}} jumps over the lazy \textit{\foreignlanguage{french}{Hund}}.
+
+	\section{German}
+
+		\begin{selectlanguage}{german}
+			\begin{displayquote}
+				Alle Menschen sind frei und gleich an Würde und Rechten geboren. Sie sind mit Vernunft und Gewissen begabt und sollen einander im Geist der Brüderlichkeit begegnen.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \textit{\foreignlanguage{german}{renard}} jumps over the lazy \textit{\foreignlanguage{german}{chien}}.
+
+	\section{Greek}
+
+		\begin{selectlanguage}{greek}
+			\begin{displayquote}
+				'Ολοι οι άνθρωποι γεννιούνται ελεύθεροι και ίσοι στην αξιοπρέπεια και τα δικαιώματα. Είναι προικισμένοι με λογική και συνείδηση, και οφείλουν να συμπεριφέρονται μεταξύ τους με πνεύμα αδελφοσύνης.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \foreignlanguage{greek}{αλεπού} jumps over the lazy \foreignlanguage{greek}{σκύλο}.
+
+	\section{Hebrew}
+
+		\begin{selectlanguage}{hebrew}
+			\begin{displayquote}
+				כל בני אדם נולדו בני חורין ושווים בערכם ובזכויותיהם. כולם חוננו בתבונה ובמצפון, לפיכך חובה עליהם לנהוג איש ברעהו ברוח של אחווה.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \foreignlanguage{hebrew}{שׁוּעָל} jumps over the lazy \foreignlanguage{hebrew}{כֶּלֶב}.
+
+	\section{Japanese}
+
+		\begin{selectlanguage}{japanese}
+			\begin{displayquote}
+				すべての人間は、生まれながらにして自由であり、かつ、尊厳と権利とについて平等である。人間は、理性と良心とを授けられており、互いに同胞の精神をもって行動しなければならない。
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \foreignlanguage{japanese}{キツネ} jumps over the lazy \foreignlanguage{japanese}{犬}.
+
+		\subsection{Han unification font comparison}
+
+			Refer to \autoref{tab:han}.
+
+	\section{Korean}
+
+		\begin{selectlanguage}{korean}
+			\begin{displayquote}
+				모든 인간은 태어날 때부터 자유로우며 그 존엄과 권리에 있어 동등하다. 인간은 천부적으로 이성과 양심을 부여받았으며 서로 형제애의 정신으로 행동하여야 한다.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \foreignlanguage{korean}{여우} jumps over the lazy \foreignlanguage{korean}{개}.
+
+		\subsection{Han unification font comparison}
+
+			Refer to \autoref{tab:han}.
+
+	\section{Latin}
+
+		\begin{selectlanguage}{latin}
+			\begin{displayquote}
+				Omnes homines dignitate et iure liberi et pares nascuntur, rationis et conscientiae participes sunt, quibus inter se concordiae studio est agendum.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \textit{\foreignlanguage{latin}{vulpes}} jumps over the lazy \textit{\foreignlanguage{latin}{canem}}.
+
+	\section{Russian}
+
+		\begin{selectlanguage}{russian}
+			\begin{displayquote}
+				Все люди рождаются свободными и равными в своем достоинстве и правах. Они наделены разумом и совестью и должны поступать в отношении друг друга в духе братства.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \foreignlanguage{russian}{лиса} jumps over the lazy \foreignlanguage{russian}{собаку}.
+
+	\section{Spanish}
+
+		\begin{selectlanguage}{spanish}
+			\begin{displayquote}
+				Todos los seres humanos nacen libres e iguales en dignidad y derechos y, dotados como están de razón y conciencia, deben comportarse fraternalmente los unos con los otros.
+			\end{displayquote}
+		\end{selectlanguage}
+
+		The quick brown \textit{\foreignlanguage{spanish}{zorro}} jumps over the lazy \textit{\foreignlanguage{spanish}{perro}}.
+
+
+\end{document}
