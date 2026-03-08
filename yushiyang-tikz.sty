@@ -6,6 +6,11 @@
 % Improve TikZ compatibility with package babel
 \usetikzlibrary{babel}
 
+% Explicitly set default text alignment so that multi-line text does not break when used with \centering
+\tikzset{
+	align=left
+}
+
 % Externalise TikZ graphics to reduce recompilation (see TikZ manual)
 % Do not enable because it fails in very stupid ways, and transplants main document error messages into the log of a figure
 % Requires --shell-escape option when enabled
