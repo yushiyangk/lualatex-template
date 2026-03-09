@@ -360,6 +360,10 @@
 %%%%%%%%%%font
 % FONTS
 
+% Use a new fontshape for \asc and \Asc, and ensure that it works well with existing fontshapes (especially 'it')
+\DeclareFontShapeChangeRule{it}{asc}{ascit}{it}
+\DeclareFontShapeChangeRule{scit}{asc}{ascit}{scit}
+
 % Libertinus as main font (package babel and fontspec)
 \babelfont{rm}[  % Default Latin Modern
 	Path=fonts/,
@@ -371,28 +375,30 @@
 	%
 	Kerning=On,
 	Contextuals={Alternate},
-	Ligatures={Common,
-	Rare},
+	Ligatures={Common, Rare},
 	Numbers={Proportional, OldStyle},
 	StylisticSet={4},  % SS4 replaces capital Eszett with double S
-]{LibertinusSerif}
-
-% Scaled Libertinus for use with \asc custom command, which is a visually imperfect workaround for the lack of appropriately-sized smallcaps in Libertinus
-\babelfont{pseudosc}[
-	Path=fonts/,
-	Extension=.otf,
-	UprightFont=*-Regular,
-	ItalicFont=*-Italic,
-	BoldFont=*-Bold,
-	BoldItalicFont=*-BoldItalic,
 	%
-	Kerning=On,
-	Ligatures={Common, Rare},
-	% Numbers={Proportional, OldStyle},
-	Numbers={Proportional, Lining},
-	StylisticSet={4},  % SS4 replaces capital Eszett with double S
-	%
-	Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
+	FontFace={\seriesdefault}{asc}{
+		Font=*-Regular,
+		Numbers={Proportional, Lining},
+		Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
+	},
+	FontFace={\seriesdefault}{ascit}{
+		Font=*-Italic,
+		Numbers={Proportional, Lining},
+		Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
+	},
+	FontFace={\bfdefault}{asc}{
+		Font=*-Bold,
+		Numbers={Proportional, Lining},
+		Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
+	},
+	FontFace={\bfdefault}{ascit}{
+		Font=*-BoldItalic,
+		Numbers={Proportional, Lining},
+		Scale=0.912871,  % ( 1.2^(log_1.2(10) - 0.5) ) / 10
+	},
 ]{LibertinusSerif}
 
 % Source Sans Pro as sans serif font (package babel and fontspec)
