@@ -290,11 +290,11 @@
 	% Convert formatting commands to plain text in bookmark labels
 	\pdfstringdefDisableCommands{%
 		% Custom typography commands
-		\renewcommand{\lining}[1]{#1}%
-		\renewcommand{\titling}[1]{#1}%
-		\renewcommand{\an}[1]{#1}%
 		\renewcommand{\asc}[1]{#1}%
 		\renewcommand{\Asc}[1]{#1}%
+		\renewcommand{\linum}[1]{#1}%
+		\renewcommand{\Linum}[1]{#1}%
+		\renewcommand{\LINUM}[1]{#1}%
 		% Maths mode
 		\renewcommand{\sin}{sin}%
 	}
@@ -480,15 +480,19 @@
 % Custom text formatting commands
 
 % Lining numbers
-\newrobustcmd*{\lining}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
+\newrobustcmd*{\linum}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
+\newrobustcmd*{\lining}[1]{\PackageWarning{yushiyang}{\lining is deprecated, Use \linum instead}\linum{#1}}  % Deprecated
 
-% Titling case
-\newrobustcmd*{\titling}[1]{\lining{#1}}
+% Uppercase lining numbers, especially for sequences of alphanumeric characters (without smallcaps; Letters={Uppercase} switches on case-sensitive forms)
+\newrobustcmd*{\LINUM}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
+\newrobustcmd*{\an}[1]{\PackageWarning{yushiyang}{\an is deprecated, Use \LINUM instead}\LINUM{#1}}  % Deprecated
 
-% Sequences of alphanumeric characters (without smallcaps; Letters={Uppercase} switches on case-sensitive forms)
-\newrobustcmd*{\an}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
+% Titling case for numbers (first character is uppercase, using case-sensitive forms)
+\def\Linuminner#1#2\relax{\LINUM{#1}\linum{#2}}
+\newrobustcmd*{\Linum}[1]{\Linuminner#1\relax}
+\newrobustcmd*{\titling}[1]{\PackageWarning{yushiyang}{\titling is deprecated, Use \Linum instead}\Linum{#1}}  % Deprecated
 
-% Larger smallcaps in Libertinus for acronyms, using lining numbers (visually imperfect workaround)
+% Larger smallcaps in Libertinus for acronyms, using lining numbers (package fontspec and mfirstuc, visually imperfect workaround)
 \newrobustcmd*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
 \newrobustcmd*{\Asc}[1]{\directlua{latexAutoSmallcaps([[\makefirstuc {#1}]])}}
 
