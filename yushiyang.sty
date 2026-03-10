@@ -480,21 +480,21 @@
 % Custom text formatting commands
 
 % Lining numbers
-\newrobustcmd*{\linum}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
-\newrobustcmd*{\lining}[1]{\PackageWarning{yushiyang}{\lining is deprecated, Use \linum instead}\linum{#1}}  % Deprecated
+\newcommand*{\linum}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
+\newcommand*{\lining}[1]{\PackageWarning{yushiyang}{\lining is deprecated, Use \linum instead}\linum{#1}}  % Deprecated
 
 % Uppercase lining numbers, especially for sequences of alphanumeric characters (without smallcaps; Letters={Uppercase} switches on case-sensitive forms)
-\newrobustcmd*{\LINUM}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
-\newrobustcmd*{\an}[1]{\PackageWarning{yushiyang}{\an is deprecated, Use \LINUM instead}\LINUM{#1}}  % Deprecated
+\newcommand*{\LINUM}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
+\newcommand*{\an}[1]{\PackageWarning{yushiyang}{\an is deprecated, Use \LINUM instead}\LINUM{#1}}  % Deprecated
 
 % Titling case for numbers (first character is uppercase, using case-sensitive forms)
-\def\Linuminner#1#2\relax{\LINUM{#1}\linum{#2}}
-\newrobustcmd*{\Linum}[1]{\Linuminner#1\relax}
-\newrobustcmd*{\titling}[1]{\PackageWarning{yushiyang}{\titling is deprecated, Use \Linum instead}\Linum{#1}}  % Deprecated
+\edef\Linuminner#1#2\relax{\LINUM{#1}\linum{#2}}
+\newcommand*{\Linum}[1]{\expandafter\Linuminner\expanded{#1}\relax}
+\newcommand*{\titling}[1]{\PackageWarning{yushiyang}{\titling is deprecated, Use \Linum instead}\Linum{#1}}  % Deprecated
 
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (package fontspec and mfirstuc, visually imperfect workaround)
-\newrobustcmd*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
-\newrobustcmd*{\Asc}[1]{\directlua{latexAutoSmallcaps([[\makefirstuc {#1}]])}}
+\newcommand*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
+\newcommand*{\Asc}[1]{\directlua{latexAutoSmallcaps([[\makefirstuc {#1}]])}}
 
 
 %%%%%%%%%%fc
