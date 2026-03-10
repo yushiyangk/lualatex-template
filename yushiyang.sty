@@ -73,8 +73,8 @@
 % TYPOGRAPHY PACKAGES
 
 % Support OpenType fonts for text environments (no-math prevents changes to \mathrm in maths environments)
-\PassOptionsToPackage{quiet}{fontspec}
-\usepackage[no-math]{fontspec}
+\usepackage[no-math, quiet]{fontspec}
+	\defaultfontfeatures{Renderer=HarfBuzz}
 
 % Automatic micro-typographic adjustments, e.g. character protrusion and font expansion
 \usepackage{microtype}
