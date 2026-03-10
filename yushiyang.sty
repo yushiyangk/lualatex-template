@@ -290,11 +290,13 @@
 	% Convert formatting commands to plain text in bookmark labels
 	\pdfstringdefDisableCommands{%
 		% Custom typography commands
-		\renewcommand{\asc}[1]{#1}%
-		\renewcommand{\Asc}[1]{#1}%
 		\renewcommand{\linum}[1]{#1}%
 		\renewcommand{\Linum}[1]{#1}%
 		\renewcommand{\LINUM}[1]{#1}%
+		\renewcommand{\asc}[1]{#1}%
+		\renewcommand{\Asc}[1]{#1}%
+		\renewcommand{\ascnum}[1]{#1}%
+		\renewcommand{\Ascnum}[1]{#1}%
 		% Maths mode
 		\renewcommand{\sin}{sin}%
 	}
@@ -495,6 +497,8 @@
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (package fontspec and mfirstuc, visually imperfect workaround)
 \newcommand*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
 \newcommand*{\Asc}[1]{\directlua{latexAutoSmallcaps([[\makefirstuc {#1}]])}}
+\newcommand*{\ascnum}[1]{\linum{\asc{#1}}}
+\newcommand*{\Ascnum}[1]{\Linum{\Asc{#1}}}
 
 
 %%%%%%%%%%fc
