@@ -292,7 +292,6 @@
 	\pdfstringdefDisableCommands{%
 		% Custom typography commands
 		\renewcommand{\linum}[1]{#1}%
-		\renewcommand{\Linum}[1]{#1}%
 		\renewcommand{\LINUM}[1]{#1}%
 		\renewcommand{\asc}[1]{#1}%
 		\renewcommand{\Asc}[1]{#1}%
@@ -483,23 +482,21 @@
 % Custom text formatting commands
 
 % Lining numbers
-\newcommand*{\linum}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
-\newcommand*{\lining}[1]{\PackageWarning{yushiyang}{\lining is deprecated, Use \linum instead}\linum{#1}}  % Deprecated
+\newrobustcmd*{\linum}[1]{{\addfontfeatures{Numbers={Lining}}#1}}
+\newrobustcmd*{\lining}[1]{\PackageWarning{yushiyang}{\lining is deprecated, use \linum instead}\linum{#1}}  % Deprecated
 
-% Uppercase lining numbers, especially for sequences of alphanumeric characters (without smallcaps; Letters={Uppercase} switches on case-sensitive forms)
-\newcommand*{\LINUM}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
-\newcommand*{\an}[1]{\PackageWarning{yushiyang}{\an is deprecated, Use \LINUM instead}\LINUM{#1}}  % Deprecated
-
-% Titling case for numbers (first character is uppercase, using case-sensitive forms)
-\edef\Linuminner#1#2\relax{\LINUM{#1}\linum{#2}}
-\newcommand*{\Linum}[1]{\expandafter\Linuminner\expanded{#1}\relax}
-\newcommand*{\titling}[1]{\PackageWarning{yushiyang}{\titling is deprecated, Use \Linum instead}\Linum{#1}}  % Deprecated
+% Uppercase lining numbers, for use with uppercase letters (Letters={Uppercase} switches on case-sensitive forms)
+\newrobustcmd*{\LINUM}[1]{{\addfontfeatures{Numbers={Lining}, Letters={Uppercase}}#1}}
+\newrobustcmd*{\an}[1]{\PackageWarning{yushiyang}{\an is deprecated, use \LINUM instead}\LINUM{#1}}  % Deprecated
+\newrobustcmd*{\titling}[1]{\PackageWarning{yushiyang}{\titling is deprecated, use \linum instead}\linum{#1}}  % Deprecated
 
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (package fontspec and mfirstuc, visually imperfect workaround)
-\newcommand*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
-\newcommand*{\Asc}[1]{\directlua{latexAutoSmallcaps([[\makefirstuc {#1}]])}}
-\newcommand*{\ascnum}[1]{\linum{\asc{#1}}}
-\newcommand*{\Ascnum}[1]{\Linum{\Asc{#1}}}
+\newrobustcmd*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
+\newrobustcmd*{\Asc}[1]{\directlua{latexAutoSmallcaps([[\makefirstuc {#1}]])}}
+
+% Sequences of alphanumeric characters (larger smallcaps with lining nums)
+\newrobustcmd*{\ascnum}[1]{\linum{\asc{#1}}}
+\newrobustcmd*{\Ascnum}[1]{\linum{\Asc{#1}}}
 
 
 %%%%%%%%%%fc
