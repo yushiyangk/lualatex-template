@@ -73,6 +73,7 @@
 % TYPOGRAPHY PACKAGES
 
 % Support OpenType fonts for text environments (no-math prevents changes to \mathrm in maths environments)
+\PassOptionsToPackage{quiet}{fontspec}
 \usepackage[no-math]{fontspec}
 
 % Automatic micro-typographic adjustments, e.g. character protrusion and font expansion
@@ -100,7 +101,7 @@
 
 % Enable custom date and time formatting (mainly for the automatically generated document date)
 \usepackage[useregional]{datetime2}
-	% Remove ordinals from dates for all English modules supported by datetime2-english (does not  apply to biblatex, which must be set separately)
+	% Remove ordinals from dates for all English modules supported by datetime2-english (does not apply to biblatex, which must be set separately)
 	% Starred command suppresses the error if a setting is not available for the given module
 	\DTMlangsetup*[english]{ord=omit}
 	\DTMlangsetup*[en-GB]{ord=omit}
