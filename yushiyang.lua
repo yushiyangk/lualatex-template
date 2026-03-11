@@ -72,7 +72,7 @@ end
 
 makefirstuc = [[\makefirstuc {]]
 makefirstucEnd = [[}]]
-function latexAutoSmallcaps(input, titling)
+function makeAutoSmallcaps(input, titling)
 	local skipFirst = titling == true
 
 	local output = ""
@@ -121,7 +121,11 @@ function latexAutoSmallcaps(input, titling)
 		output = output .. "}"
 	end
 
-	tex.print(output)
+	return output
+end
+
+function latexAutoSmallcaps(input, titling)
+	tex.print(makeAutoSmallcaps(input, titling))
 end
 
 
@@ -153,13 +157,9 @@ function latexTitleLiningNumeralsAutoSmallcaps(input)
 			secondCharOffset = utf8.offset(input, 2)
 			firstChar = input:sub(1, secondCharOffset - 1)
 			remaining = input:sub(secondCharOffset)
-			tex.print([[\LINUM{]] .. firstChar .. [[}\linum{]])
-			latexAutoSmallcaps(remaining)
-			tex.print([[}]])
+			tex.print([[\LINUM{]] .. firstChar .. [[}\linum{]] .. makeAutoSmallcaps(remaining) .. [[}]])
 		end
 	else
-		tex.print([[\linum{]])
-		latexAutoSmallcaps(input, true)
-		tex.print([[}]])
+		tex.print([[\linum{]] .. makeAutoSmallcaps(input, true) .. [[}]])
 	end
 end
