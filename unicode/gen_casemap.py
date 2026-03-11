@@ -8,6 +8,7 @@ from datetime import datetime
 uppercase: deque[int] = deque()
 titlecase: OrderedDict[int, list[int]] = OrderedDict()
 letters: deque[int] = deque()
+numerals: deque[int] = deque()
 
 for i in range(sys.maxunicode):
 	unicode_char = chr(i)
@@ -20,6 +21,8 @@ for i in range(sys.maxunicode):
 		letters.append(ord(unicode_char))
 	elif cat in ('Ll', 'Lm', 'Lo'):
 		letters.append(ord(unicode_char))
+	elif cat in ('Nd', 'Nl', 'No'):
+		numerals.append(ord(unicode_char))
 
 comment = f"Unicode data generated from Python {platform.python_version()} (using Unicode {unicodedata.unidata_version}) at {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC%z')}"
 lua_comment = f"-- {comment}"
@@ -31,7 +34,7 @@ for composite_n, decomposition in titlecase.items():
 	lua_titlecase_entries.append(r"[" + str(composite_n) + r"]={" + ','.join(str(decomp_n) for decomp_n in decomposition) + r"}")
 lua_titlecase = r"UNICODE_TITLECASE_DECOMPOSITION={" + r",".join(lua_titlecase_entries) + r"}"
 
-lua_letter_ranges = []
+letter_ranges = []
 current_range = None
 for letter_n in letters:
 	if current_range is None:
@@ -39,12 +42,23 @@ for letter_n in letters:
 	elif letter_n == current_range[1] + 1:
 		current_range[1] = letter_n
 	else:
-		lua_letter_ranges.append(current_range)
+		letter_ranges.append(current_range)
 		current_range = [letter_n, letter_n]
+lua_letter_ranges = r"UNICODE_SORTED_LETTER_RANGES={" + r",".join(r"{" + str(start_n) + r"," + str(end_n) + r"}" for start_n, end_n in letter_ranges) + r"}"
 
-lua_letter_ranges = r"UNICODE_SORTED_LETTER_RANGES={" + r",".join(r"{" + str(start_n) + r"," + str(end_n) + r"}" for start_n, end_n in lua_letter_ranges) + r"}"
+numeral_ranges = []
+current_range = None
+for numeral_n in numerals:
+	if current_range is None:
+		current_range = [numeral_n, numeral_n]
+	elif numeral_n == current_range[1] + 1:
+		current_range[1] = numeral_n
+	else:
+		numeral_ranges.append(current_range)
+		current_range = [numeral_n, numeral_n]
+lua_numeral_ranges = r"UNICODE_SORTED_NUMERAL_RANGES={" + r",".join(r"{" + str(start_n) + r"," + str(end_n) + r"}" for start_n, end_n in numeral_ranges) + r"}"
 
-lua_out = f"{lua_comment}\n{lua_uppercase}\n{lua_titlecase}\n{lua_letter_ranges}"
+lua_out = f"{lua_comment}\n{lua_uppercase}\n{lua_titlecase}\n{lua_letter_ranges}\n{lua_numeral_ranges}\n"
 
 print(comment)
 
