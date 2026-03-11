@@ -70,15 +70,13 @@ function makeUppercaseSmallcap(codepoint, currentlyUppercase)
 	end
 end
 
-makefirstuc = [[\makefirstuc {]]
-makefirstucEnd = [[}]]
-function makeAutoSmallcaps(input, titling)
+function makeAutoSmallcaps(text, titling)
 	local skipFirst = titling == true
 
 	local output = ""
 	local currentlyUppercase = false
 	local currentControlSequence = ""
-	for pos, codepoint in utf8.codes(input) do -- for each char in string
+	for pos, codepoint in utf8.codes(text) do -- for each char in string
 		local gobbled = false
 
 		if #currentControlSequence == 1 then
@@ -124,8 +122,19 @@ function makeAutoSmallcaps(input, titling)
 	return output
 end
 
-function latexAutoSmallcaps(input, titling)
-	tex.print(makeAutoSmallcaps(input, titling))
+makefirstuc = [[\makefirstuc {]]
+makefirstucEnd = [[}]]
+function latexAutoSmallcaps(input)-- Check if input is wrapped by a call to \makefirstuc
+	local text, titling
+	if input:sub(1, #makefirstuc) == makefirstuc then
+		text = input:sub(#makefirstuc + 1, #input - #makefirstucEnd)  -- Removing leading makefirstuc, and remove trailing makefirstucEnd
+		titling = true
+	else
+		text = input
+		titling = false
+	end
+
+	tex.print(makeAutoSmallcaps(text, titling))
 end
 
 

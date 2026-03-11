@@ -495,7 +495,7 @@
 
 % Larger smallcaps in Libertinus for acronyms, using lining numbers (package fontspec and mfirstuc, visually imperfect workaround)
 \newrobustcmd*{\asc}[1]{\directlua{latexAutoSmallcaps([[#1]])}}
-\newrobustcmd*{\Asc}[1]{\directlua{latexAutoSmallcaps([[#1]], true)}}
+\newrobustcmd*{\Asc}[1]{\directlua{latexAutoSmallcaps([[\makefirstuc {#1}]])}}
 
 % Sequences of alphanumeric characters (larger smallcaps with lining nums)
 \newrobustcmd*{\ascnum}[1]{\linum{\asc{#1}}}
