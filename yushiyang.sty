@@ -199,6 +199,8 @@
 		detect-all,  % Font features
 		table-number-alignment=center, text-rm={\addfontfeatures{Numbers={Lining}}},
 	}
+	\AtBeginDocument{\DeclareSIUnit\bit{b}}  % Fix unit symbol for bit, from "bit" to "b"
+
 
 % Remove spaces around brackets that use \left and \right
 \usepackage{mleftright}
